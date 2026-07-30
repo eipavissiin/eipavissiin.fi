@@ -3,6 +3,9 @@
 Yksipäiväisen DIY-festarin yksisivuinen sivusto ja A3-juliste.
 Ilme: myöhäisen 90-luvun koulun disco, koottu clipartista.
 
+**Julkaistu: <https://eipavissiin.fi>** — Netlify rakentaa ja julkaisee
+automaattisesti jokaisesta `main`-haaraan työnnetystä commitista.
+
 Ei build-vaihetta, ei riippuvuuksia, ei frameworkkia. Pelkkää HTML:ää ja CSS:ää.
 
 ```
@@ -68,10 +71,8 @@ Jäljellä:
    > HTML-kommentit eivät mene sisäkkäin — ulompi päättyisi ensimmäiseen
    > `-->`:iin ja merkkaus hajoaisi. `hidden` on tässä oikea työkalu: se
    > piilottaa osion myös ruudunlukijalta.
-3. **Domain** — `index.html` (og-tagit), `poster.html` (`.poster__url`),
-   `robots.txt`.
-4. **FB-eventti** — `index.html`, Yhteystiedot.
-5. **Tukijoiden 88×31-napit** — kommentoitu pois molemmista tiedostoista.
+3. **FB-eventti** — `index.html`, Yhteystiedot.
+4. **Tukijoiden 88×31-napit** — kommentoitu pois molemmista tiedostoista.
    Ainoat vielä tyhjät kuvapaikat.
 
 Clipart on paikallaan: kaikki muut kuvapaikat on täytetty CC0-lisensoiduilla
@@ -130,20 +131,34 @@ Jos viet julisteen painoon ja he pyytävät leikkuuvaraa (bleed), muuta
 Kopiokoneelle menevään versioon tätä ei tarvita. Valkoinen reuna A3:lla on
 täysin ajanmukainen.
 
-## Julkaisu Netlifyyn
+## Julkaisu
 
-`netlify.toml` on valmiina: ei build-komentoa, julkaisukansio on repon juuri.
+Sivusto on tuotannossa osoitteessa <https://eipavissiin.fi>.
+
+- **Repo:** `eipavissiin/eipavissiin.fi` (julkinen)
+- **Netlify:** julkaisee automaattisesti jokaisesta `main`-haaraan työnnetystä
+  commitista. Ei build-komentoa, julkaisukansio on repon juuri — asetukset
+  tulevat `netlify.toml`:sta.
+- **DNS:** Netlify DNS. Nimipalvelimet `dns1–dns4.p08.nsone.net`.
+- **Sertifikaatti:** Let's Encrypt, uusiutuu automaattisesti. Kattaa sekä
+  `eipavissiin.fi`:n että `*.eipavissiin.fi`:n.
+- **Ohjaukset:** `www` → apex, HTTP → HTTPS. Ensisijainen osoite on apex,
+  koska julisteessa lukee `EIPAVISSIIN.FI` ilman www:tä.
+
+Muutosten julkaisu:
 
 ```sh
-git init && git add -A && git commit -m "Eipä Vissiin! 2026 -sivusto"
-gh repo create eipa-vissiin --private --source=. --push
+git push origin main
 ```
 
-Netlifyssä: **Add new site → Import an existing project** → valitse repo →
-asetukset tulevat `netlify.toml`:sta → Deploy.
+> **Repo on julkinen.** Netlifyn ilmaistaso ei julkaise organisaation
+> omistamia yksityisiä repoja — se vaatii Pro-tason. Mitään salaista täällä
+> ei ole, mutta älä lisää sellaista myöhemminkään.
 
-Domain: **Domain management → Add a domain**. Netlify hoitaa Let's Encrypt
--sertifikaatin automaattisesti kun DNS osoittaa oikein.
+> **Sähköposti.** Koko DNS on Netlifyllä. Jos joskus haluat
+> `@eipavissiin.fi`-osoitteet, MX- ja TXT-tietueet lisätään **Netlifyn**
+> DNS-paneeliin, ei rekisteröijälle. Rekisteröijälle lisätyt tietueet eivät
+> tee mitään, ja posti hajoaa hiljaisesti.
 
 Ilmaistaso riittää tähän moninkertaisesti — sivusto on muutama sata kilotavua
 staattisia tiedostoja eikä siinä ole yhtään funktiota tai buildia.
