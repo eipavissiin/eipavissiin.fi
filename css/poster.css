@@ -1,0 +1,376 @@
+@charset "utf-8";
+
+/* ============================================================
+   Eipä Vissiin! — poster.css
+   A3 pysty (297 × 420 mm), tulostettavaksi tai PDF:ksi.
+
+   Kaikki mitat on mm:einä jotta tulostejälki on ennustettava.
+   Näytöllä juliste skaalataan transformilla mahtumaan ruudulle;
+   skaalaus ei vaikuta tulosteeseen.
+   ============================================================ */
+
+@page {
+  size: A3 portrait;
+  margin: 0;
+  /* Painotaloon menevään versioon: ks. README, kohta "Painovalmis". */
+}
+
+:root {
+  --navy:    #000080;
+  --hotpink: #ff00cc;
+  --cyan:    #00ffff;
+  --lime:    #00ff00;
+  --yellow:  #ffff00;
+  --purple:  #9900ff;
+  --orange:  #ff9900;
+  --paper:   #ffffff;
+
+  --font-display: Impact, "Haettenschweiler", "Arial Black", sans-serif;
+  --font-body:    Verdana, Geneva, Tahoma, sans-serif;
+  --font-fun:     "Comic Sans MS", "Comic Neue", cursive;
+
+  /* Näytön esikatselun skaala. Ei vaikuta tulosteeseen. */
+  --preview: 0.85;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #333;
+  font-family: var(--font-body);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+img { max-width: 100%; height: auto; border: 0; }
+
+/* ------------------------------------------------------------
+   Työkalupalkki (ei tulostu)
+   ------------------------------------------------------------ */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.2rem;
+  background: #c0c0c0;
+  border-bottom: 2px solid #404040;
+  font-size: 0.85rem;
+}
+
+.toolbar__text { margin: 0; flex: 1 1 22rem; line-height: 1.5; }
+
+.toolbar__btn {
+  font: inherit;
+  font-weight: bold;
+  padding: 0.45rem 1rem;
+  background: #c0c0c0;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  border-top:    2px solid #fff;
+  border-left:   2px solid #fff;
+  border-right:  2px solid #404040;
+  border-bottom: 2px solid #404040;
+}
+
+.toolbar__btn:active {
+  border-top:    2px solid #404040;
+  border-left:   2px solid #404040;
+  border-right:  2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+/* ------------------------------------------------------------
+   Näytön esikatselu
+   ------------------------------------------------------------ */
+
+.stage {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  /* Varataan skaalatun julisteen vaatima korkeus, koska transform
+     ei vaikuta layoutin virtaukseen. */
+  height: calc(420mm * var(--preview) + 4rem);
+}
+
+@media (max-width: 1100px) { :root { --preview: 0.6; } }
+@media (max-width:  800px) { :root { --preview: 0.45; } }
+@media (max-width:  560px) { :root { --preview: 0.3; } }
+
+/* ------------------------------------------------------------
+   Juliste
+   ------------------------------------------------------------ */
+
+.poster {
+  width: 297mm;
+  height: 420mm;
+  flex: 0 0 auto;
+  padding: 14mm 12mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+
+  background-color: var(--navy);
+  background-image:
+    radial-gradient(2mm 2mm at 12% 8%,  var(--yellow) 45%, transparent 46%),
+    radial-gradient(1.5mm 1.5mm at 88% 14%, var(--cyan) 45%, transparent 46%),
+    radial-gradient(2mm 2mm at 80% 92%, var(--hotpink) 45%, transparent 46%),
+    radial-gradient(1.5mm 1.5mm at 18% 88%, var(--lime) 45%, transparent 46%);
+  color: #fff;
+
+  transform: scale(var(--preview));
+  transform-origin: top center;
+  box-shadow: 0 0 0 1px #000, 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* ------------------------------------------------------------
+   Placeholder-slotit — sama logiikka kuin site.css:ssä:
+   poista data-slot-attribuutti kun oikea kuva on paikallaan.
+   ------------------------------------------------------------ */
+
+.slot { display: inline-block; }
+
+.slot[data-slot] {
+  min-width: 24mm;
+  min-height: 12mm;
+  padding: 2mm;
+  border: 0.8mm dashed var(--hotpink);
+  background: rgba(255, 255, 255, 0.92);
+  color: #a3007f;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 3mm;
+  line-height: 1.3;
+  word-break: break-word;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slot[data-slot]::after { content: attr(data-slot); }
+.slot[data-slot] img { display: none; }
+
+/* ------------------------------------------------------------
+   Yläreuna
+   ------------------------------------------------------------ */
+
+.poster__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6mm;
+  width: 100%;
+}
+
+.kicker {
+  font-family: var(--font-fun);
+  font-size: 7mm;
+  color: var(--cyan);
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+/* ------------------------------------------------------------
+   Nimi
+   ------------------------------------------------------------ */
+
+.poster__title {
+  margin: 4mm 0 0;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  transform: skewY(-3deg);
+}
+
+.poster__title-a,
+.poster__title-b {
+  display: block;
+  color: var(--yellow);
+  text-shadow:
+     1.2mm  1.2mm 0 var(--hotpink),
+     2.4mm  2.4mm 0 var(--purple),
+     3.4mm  3.4mm 0 #000,
+    -0.4mm -0.4mm 0 #fff;
+}
+
+.poster__title-a { font-size: 42mm; }
+.poster__title-b { font-size: 56mm; }
+
+.poster__year {
+  margin: 5mm 0 0;
+  font-family: var(--font-display);
+  font-size: 20mm;
+  letter-spacing: 0.3em;
+  color: var(--cyan);
+  text-shadow: 1.2mm 1.2mm 0 #000;
+}
+
+/* ------------------------------------------------------------
+   Viivat
+   ------------------------------------------------------------ */
+
+.poster__rule {
+  width: 100%;
+  height: 3mm;
+  margin: 6mm 0;
+  flex: 0 0 auto;
+  background: linear-gradient(
+    90deg,
+    #ff0000, #ff9900, #ffff00, #00ff00,
+    #00ffff, #0066ff, #9900ff, #ff00cc
+  );
+}
+
+/* ------------------------------------------------------------
+   Milloin / missä
+   ------------------------------------------------------------ */
+
+.poster__when {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22mm;
+  color: var(--lime);
+  text-shadow: 1mm 1mm 0 #000;
+}
+
+.poster__where {
+  margin: 2mm 0 0;
+  font-family: var(--font-display);
+  font-size: 10mm;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+
+.poster__doors {
+  margin: 2mm 0 0;
+  font-family: var(--font-body);
+  font-size: 6mm;
+  letter-spacing: 0.1em;
+  color: var(--yellow);
+}
+
+/* ------------------------------------------------------------
+   Line-up
+   ------------------------------------------------------------ */
+
+.poster__lineup {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.poster__lineup li {
+  font-family: var(--font-display);
+  font-size: 13mm;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0.8mm 0.8mm 0 #000;
+}
+
+.poster__lineup .is-head {
+  font-size: 20mm;
+  color: var(--hotpink);
+  text-shadow: 1mm 1mm 0 var(--yellow), 2mm 2mm 0 #000;
+}
+
+.poster__lineup .is-small {
+  font-family: var(--font-fun);
+  font-size: 7mm;
+  color: var(--cyan);
+  text-shadow: none;
+  margin-top: 2mm;
+}
+
+/* ------------------------------------------------------------
+   Clipart-rivi
+   ------------------------------------------------------------ */
+
+.poster__clipart-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 5mm;
+  width: 100%;
+  margin: 6mm 0;
+}
+
+/* ------------------------------------------------------------
+   Hinta
+   ------------------------------------------------------------ */
+
+.poster__price {
+  margin: 0;
+  padding: 3mm 6mm;
+  background: var(--yellow);
+  color: #000;
+  font-family: var(--font-display);
+  font-size: 9mm;
+  letter-spacing: 0.04em;
+  border: 1mm solid #000;
+  transform: rotate(-1.5deg);
+}
+
+/* ------------------------------------------------------------
+   Alareuna — työnnetään pohjaan
+   ------------------------------------------------------------ */
+
+.poster__footer {
+  margin-top: auto;
+  width: 100%;
+}
+
+.poster__url {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 14mm;
+  letter-spacing: 0.06em;
+  color: var(--yellow);
+  text-shadow: 0.8mm 0.8mm 0 var(--hotpink);
+}
+
+.poster__smallprint {
+  margin: 3mm 0 4mm;
+  font-family: var(--font-body);
+  font-size: 3.6mm;
+  line-height: 1.5;
+  color: #ccccdd;
+}
+
+.poster__sponsors {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4mm;
+}
+
+/* ------------------------------------------------------------
+   Tuloste
+   ------------------------------------------------------------ */
+
+@media print {
+  body { background: #fff; }
+  .toolbar { display: none; }
+
+  .stage {
+    display: block;
+    padding: 0;
+    height: auto;
+  }
+
+  .poster {
+    transform: none;          /* täysi koko paperille */
+    box-shadow: none;
+    width: 297mm;
+    height: 420mm;
+    break-inside: avoid;
+  }
+}

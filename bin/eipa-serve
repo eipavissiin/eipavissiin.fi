@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# tsserve — serve a directory over your tailnet with one command.
+#
+#   tsserve [directory] [port]
+#
+# Starts python3's http.server bound to loopback, points `tailscale serve`
+# at it, prints the URL, and tears both down on Ctrl-C.
+
+set -euo pipefail
+
+DIR="${1:-$PWD}"
+PORT="${2:-8080}"
+
+[[ -d "$DIR" ]] || { echo "tsserve: not a directory: $DIR" >&2; exit 1; }
+DIR="$(cd "$DIR" && pwd)"
+
+# tailscale serve needs root unless you've run `sudo tailscale set --operator=$USER`
+TS=(tailscale)
+if ! tailscale serve status >/dev/null 2>&1; then
+  TS=(sudo tailscale)
+fi
+
+# Refuse to fight over an occupied port.
+if (exec 3<>"/dev/tcp/127.0.0.1/$PORT") 2>/dev/null; then
+  exec 3>&-
+  echo "tsserve: port $PORT is already in use" >&2
+  exit 1
+fi
+
+[[ -f "$DIR/index.html" ]] || echo "tsserve: warning — no index.html in $DIR, you'll get a file listing" >&2
+
+cleanup() {
+  echo
+  echo "tsserve: tearing down..."
+  "${TS[@]}" serve --https=443 off >/dev/null 2>&1 || true
+  if [[ -n "${SERVER_PID:-}" ]]; then
+    kill "$SERVER_PID" 2>/dev/null || true
+    wait "$SERVER_PID" 2>/dev/null || true
+  fi
+}
+trap cleanup EXIT INT TERM
+
+python3 -m http.server "$PORT" --bind 127.0.0.1 --directory "$DIR" >/dev/null 2>&1 &
+SERVER_PID=$!
+
+# Give it a moment, then confirm it actually came up.
+sleep 0.3
+kill -0 "$SERVER_PID" 2>/dev/null || { echo "tsserve: http.server failed to start" >&2; exit 1; }
+
+"${TS[@]}" serve --bg "$PORT" >/dev/null
+
+URL="$(tailscale status --json \
+  | python3 -c 'import json,sys; print("https://" + json.load(sys.stdin)["Self"]["DNSName"].rstrip("."))')"
+
+echo "tsserve: $DIR"
+echo "tsserve: $URL"
+echo "tsserve: Ctrl-C to stop"
+
+wait "$SERVER_PID"
