@@ -59,9 +59,15 @@ Jäljellä:
    Kaksi TODO-riviä (esteetön sisäänkäynti, esteetön wc). Tarkista Tukikohdasta.
    Tämä on käytännössä ainoa kohta jota joku lukee tarkkaan ennen kuin päättää
    tuleeko, joten älä jätä sitä arvailun varaan.
-2. **Aikataulu** — `index.html`, kommentoitu `.grid95`-taulukko odottaa
-   kellonaikoja. Poista kommenttimerkit ja alempi `.note`-kappale kun ajat ovat
-   selvillä.
+2. **Aikataulu** — koko osio on **piilotettu** (`hidden`-attribuutti
+   `<section id="aikataulu">`-tagissa ja sitä seuraavassa `<hr>`:ssä), koska
+   yksi bändi puuttuu eikä alustavaa aikataulua ole. Navin Aikataulu-linkki on
+   kommentoitu pois. Palautusohjeet ovat `index.html`:ssä osion yläpuolella.
+
+   > Osiota ei ole kommentoitu pois, koska sen sisällä on jo kommentti.
+   > HTML-kommentit eivät mene sisäkkäin — ulompi päättyisi ensimmäiseen
+   > `-->`:iin ja merkkaus hajoaisi. `hidden` on tässä oikea työkalu: se
+   > piilottaa osion myös ruudunlukijalta.
 3. **Domain** — `index.html` (og-tagit), `poster.html` (`.poster__url`),
    `robots.txt`.
 4. **FB-eventti** — `index.html`, Yhteystiedot.

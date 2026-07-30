@@ -92,6 +92,10 @@ img {
   border: 0;
 }
 
+/* hidden-attribuutti on selaimen oletustyylissä pelkkä display:none, jonka
+   mikä tahansa myöhempi display-sääntö kumoaa. Tämä varmistaa ettei niin käy. */
+[hidden] { display: none !important; }
+
 a { color: #0000ee; }
 a:visited { color: var(--purple); }
 a:hover,

@@ -74,7 +74,9 @@
        ============================================================ -->
   <nav class="nav95" aria-label="Sivunavigaatio">
     <a class="btn95" href="#esiintyjat">Esiintyjät</a>
+    <!-- PIILOTETTU: palauta yhdessä #aikataulu-osion kanssa, ks. alempaa.
     <a class="btn95" href="#aikataulu">Aikataulu</a>
+    -->
     <a class="btn95" href="#liput">Liput</a>
     <a class="btn95" href="#perille">Perille</a>
     <a class="btn95" href="#ukk">UKK</a>
@@ -182,9 +184,21 @@
     <hr class="rainbow">
 
     <!-- ============================================================
-         AIKATAULU
+         AIKATAULU — PIILOTETTU TOISTAISEKSI
+
+         Yksi bändi puuttuu eikä alustavaa aikataulua ole, joten koko
+         osio on piilossa. Palauta näin:
+           1. poista alta "hidden"-attribuutti tämän <section>-tagin sisältä
+           2. poista "hidden" alempaa <hr class="rainbow" hidden> -riviltä
+           3. palauta navin Aikataulu-linkki (kommentoitu pois ylempänä)
+           4. täytä taulukon kellonajat ja poista sen ympäriltä
+              kommenttimerkit sekä alempi .note-kappale
+
+         Osiota EI ole kommentoitu pois, koska sisällä on jo kommentti
+         eivätkä HTML-kommentit mene sisäkkäin — ulompi loppuisi
+         ensimmäiseen "-->" ja merkkaus hajoaisi.
          ============================================================ -->
-    <section class="panel" aria-labelledby="h-aikataulu" id="aikataulu">
+    <section class="panel" aria-labelledby="h-aikataulu" id="aikataulu" hidden>
       <h2 id="h-aikataulu" class="panel__title">
         Aikataulu <span class="gloss" lang="en">/ Schedule</span>
       </h2>
@@ -214,7 +228,7 @@
 
       <p class="note">Aikataulu julkaistaan lähempänä tapahtumaa. Ovet auki 17:30, ensimmäinen keikka 18:00.</p>
     </section>
-    <hr class="rainbow">
+    <hr class="rainbow" hidden>
 
     <!-- ============================================================
          LIPUT
