@@ -43,8 +43,12 @@ grep -rn 'data-slot' index.html poster.html
 | `dancers.gif` | 200 × 200 | clipart-rivi |
 | `discoball.gif` | 200 × 200 | clipart-rivi |
 
-> **Huom. tulostuskoko.** Julisteessa clipart piirtyy noin 40 mm leveäksi.
-> 300 dpi:llä se on ~470 px. Taulukon px-koot ovat *asettelua varten*; ota
+> **Huom. tulostuskoko.** `poster.css` rajaa clipartin korkeuden: yläreunan
+> kuvat enintään **30 mm**, clipart-rivin kuvat enintään **36 mm**. Leveys
+> skaalautuu mukana. Rajaus on pakollinen — juliste on kiinteä 420 mm korkea,
+> ja ilman kattoa iso GIF työntää alaosan sivun ulkopuolelle.
+>
+> 36 mm on 300 dpi:llä ~425 px. Taulukon px-koot ovat *asettelua varten*; ota
 > julisteeseen isoin saatavilla oleva versio, tai mieluiten SVG (Openclipart),
 > joka skaalautuu terävänä mihin kokoon vain.
 > Jos ajat aidolla 90-luvun GIF-rakeisuudella, se on tyylivalinta — pidä se
@@ -61,6 +65,10 @@ grep -rn 'data-slot' index.html poster.html
 Nämä ovat klassiset "web-napit". Käytä yhteistyökumppaneille, kaverifestareille
 tai tee omat. Poista ylimääräiset `<span class="slot">`-lohkot jos tarvitset
 vähemmän kuin kolme.
+
+> **Tällä hetkellä nappirivit on kommentoitu pois** sekä `index.html`:n
+> footerista että `poster.html`:n alaosasta. Poista kommenttimerkit kun
+> nappeja on. Jos tukijoita ei tule, voit poistaa lohkot kokonaan.
 
 ### `assets/bg/`
 

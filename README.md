@@ -49,21 +49,25 @@ Kuvapaikat erikseen:
 grep -rn 'data-slot' index.html poster.html
 ```
 
-Käy nämä läpi järjestyksessä:
+Valmiina: päivämäärä, paikka, osoite, kellonajat, ikäraja, line-up, hinta,
+maksutavat, UKK, sähköposti ja Instagram. Sivusto ja juliste on synkattu
+keskenään.
 
-1. **Päivämäärä, kellonajat, paikka, osoite, ikäraja** — `index.html` (hero +
-   pikatiedot + In English) ja `poster.html`.
-2. **Esiintyjät** — `index.html` `.lineup`-lista, `poster.html`
-   `.poster__lineup`. Ykkösnimi saa luokan `is-head` / `lineup__item--headline`.
-3. **Aikataulu** — `index.html`, taulukko `.grid95`.
-4. **Liput** — hinnat ja lipunmyynnin osoite (Kide.app, Tiketti, Holvi…).
-5. **Saavutettavuus ja turvallisempi tila** — nämä kannattaa kirjoittaa
-   itse eikä kopioida. Ne ovat käytännössä ainoa osa sivua jota joku lukee
-   tarkkaan ennen kuin päättää tuleeko.
-6. **Yhteystiedot ja somelinkit.**
-7. **Domain** — `index.html` (og-tagit), `poster.html` (`.poster__url`),
+Jäljellä:
+
+1. **Saavutettavuustiedot** — `index.html`, Perille-osion `Saavutettavuus`.
+   Kaksi TODO-riviä (esteetön sisäänkäynti, esteetön wc). Tarkista Tukikohdasta.
+   Tämä on käytännössä ainoa kohta jota joku lukee tarkkaan ennen kuin päättää
+   tuleeko, joten älä jätä sitä arvailun varaan.
+2. **Aikataulu** — `index.html`, kommentoitu `.grid95`-taulukko odottaa
+   kellonaikoja. Poista kommenttimerkit ja alempi `.note`-kappale kun ajat ovat
+   selvillä.
+3. **Domain** — `index.html` (og-tagit), `poster.html` (`.poster__url`),
    `robots.txt`.
-8. **Kuvat** — ks. [`assets/README.md`](assets/README.md).
+4. **FB-eventti** — `index.html`, Yhteystiedot.
+5. **Tukijoiden 88×31-napit** — kommentoitu pois molemmista tiedostoista.
+6. **Kuvat** — ks. [`assets/README.md`](assets/README.md). Kaikki
+   clipart-paikat ovat vielä tyhjiä.
 
 ## Värien vaihtaminen
 

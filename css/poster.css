@@ -156,6 +156,12 @@ img { max-width: 100%; height: auto; border: 0; }
 .slot[data-slot]::after { content: attr(data-slot); }
 .slot[data-slot] img { display: none; }
 
+/* Julisteen pystysuunta on kiinteä 420 mm, joten clipartin korkeus on
+   katkaistava. Ilman näitä iso GIF työntää alaosan ulos sivulta ja
+   overflow:hidden leikkaa sen pois. Leveys skaalautuu mukana. */
+.poster__top .slot img       { max-height: 30mm; width: auto; }
+.poster__clipart-row .slot img { max-height: 36mm; width: auto; }
+
 /* ------------------------------------------------------------
    Yläreuna
    ------------------------------------------------------------ */
@@ -170,7 +176,7 @@ img { max-width: 100%; height: auto; border: 0; }
 
 .kicker {
   font-family: var(--font-fun);
-  font-size: 7mm;
+  font-size: 6mm;
   color: var(--cyan);
   margin: 0;
   flex: 1 1 auto;
@@ -200,13 +206,13 @@ img { max-width: 100%; height: auto; border: 0; }
     -0.4mm -0.4mm 0 #fff;
 }
 
-.poster__title-a { font-size: 42mm; }
-.poster__title-b { font-size: 56mm; }
+.poster__title-a { font-size: 34mm; }
+.poster__title-b { font-size: 46mm; }
 
 .poster__year {
-  margin: 5mm 0 0;
+  margin: 4mm 0 0;
   font-family: var(--font-display);
-  font-size: 20mm;
+  font-size: 16mm;
   letter-spacing: 0.3em;
   color: var(--cyan);
   text-shadow: 1.2mm 1.2mm 0 #000;
@@ -219,7 +225,7 @@ img { max-width: 100%; height: auto; border: 0; }
 .poster__rule {
   width: 100%;
   height: 3mm;
-  margin: 6mm 0;
+  margin: 5mm 0;
   flex: 0 0 auto;
   background: linear-gradient(
     90deg,
@@ -235,7 +241,7 @@ img { max-width: 100%; height: auto; border: 0; }
 .poster__when {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 22mm;
+  font-size: 18mm;
   color: var(--lime);
   text-shadow: 1mm 1mm 0 #000;
 }
@@ -243,7 +249,7 @@ img { max-width: 100%; height: auto; border: 0; }
 .poster__where {
   margin: 2mm 0 0;
   font-family: var(--font-display);
-  font-size: 10mm;
+  font-size: 9mm;
   letter-spacing: 0.06em;
   color: #fff;
 }
@@ -251,7 +257,7 @@ img { max-width: 100%; height: auto; border: 0; }
 .poster__doors {
   margin: 2mm 0 0;
   font-family: var(--font-body);
-  font-size: 6mm;
+  font-size: 5mm;
   letter-spacing: 0.1em;
   color: var(--yellow);
 }
@@ -269,7 +275,7 @@ img { max-width: 100%; height: auto; border: 0; }
 
 .poster__lineup li {
   font-family: var(--font-display);
-  font-size: 13mm;
+  font-size: 12mm;
   line-height: 1.15;
   text-transform: uppercase;
   color: #fff;
@@ -277,15 +283,19 @@ img { max-width: 100%; height: auto; border: 0; }
 }
 
 .poster__lineup .is-head {
-  font-size: 20mm;
+  font-size: 17mm;
   color: var(--hotpink);
   text-shadow: 1mm 1mm 0 var(--yellow), 2mm 2mm 0 #000;
 }
 
+/* Pitkille bändinimille, jotta ne mahtuvat yhdelle riville. */
+.poster__lineup .is-long { font-size: 9mm; }
+
 .poster__lineup .is-small {
   font-family: var(--font-fun);
-  font-size: 7mm;
+  font-size: 5.5mm;
   color: var(--cyan);
+  text-transform: none;
   text-shadow: none;
   margin-top: 2mm;
 }
@@ -300,7 +310,7 @@ img { max-width: 100%; height: auto; border: 0; }
   justify-content: space-around;
   gap: 5mm;
   width: 100%;
-  margin: 6mm 0;
+  margin: 5mm 0;
 }
 
 /* ------------------------------------------------------------
@@ -313,7 +323,7 @@ img { max-width: 100%; height: auto; border: 0; }
   background: var(--yellow);
   color: #000;
   font-family: var(--font-display);
-  font-size: 9mm;
+  font-size: 8mm;
   letter-spacing: 0.04em;
   border: 1mm solid #000;
   transform: rotate(-1.5deg);
@@ -331,17 +341,17 @@ img { max-width: 100%; height: auto; border: 0; }
 .poster__url {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 14mm;
+  font-size: 12mm;
   letter-spacing: 0.06em;
   color: var(--yellow);
   text-shadow: 0.8mm 0.8mm 0 var(--hotpink);
 }
 
 .poster__smallprint {
-  margin: 3mm 0 4mm;
+  margin: 3mm 0 0;
   font-family: var(--font-body);
-  font-size: 3.6mm;
-  line-height: 1.5;
+  font-size: 3.4mm;
+  line-height: 1.45;
   color: #ccccdd;
 }
 
