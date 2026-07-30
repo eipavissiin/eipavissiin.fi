@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1200" height="630" viewBox="0 0 1200 630">
+  <title>Eipä Vissiin! 2026 — some-jakokuva</title>
+  <!--
+    Lähde some-jakokuvalle (og:image). Renderöi PNG:ksi repon juuresta:
+
+      rsvg-convert -w 1200 -h 630 assets/og-image.svg \
+        -o assets/social/og-image.png
+
+    Tiedosto on assets/-kansion juuressa eikä social/:n sisällä siksi,
+    että librsvg sallii ulkoiset kuvaviittaukset vain samasta kansiosta
+    tai sen alikansioista. "../clipart/..." ei renderöityisi lainkaan —
+    kuvat jäisivät hiljaisesti pois.
+
+    HUOM. fontti: tässä käytetään yleistä sans-serifiä, ei Impactia,
+    jotta kuva renderöityy samannäköisenä myös koneella jolle Impactia
+    ei ole asennettu. Otsikko ei siis ole identtinen sivuston kanssa.
+  -->
+  <defs>
+    <pattern id="stars" width="140" height="140" patternUnits="userSpaceOnUse">
+      <image xlink:href="bg/stars-tile.svg" width="140" height="140"/>
+    </pattern>
+    <linearGradient id="rainbow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"    stop-color="#ff0000"/>
+      <stop offset="0.16" stop-color="#ff9900"/>
+      <stop offset="0.32" stop-color="#ffff00"/>
+      <stop offset="0.48" stop-color="#00ff00"/>
+      <stop offset="0.64" stop-color="#00ffff"/>
+      <stop offset="0.80" stop-color="#0066ff"/>
+      <stop offset="1"    stop-color="#ff00cc"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#000080"/>
+  <!-- Tähdet vain yläosaan. Alaosassa on pientä tekstiä, ja tiheä
+       tähtitaivas sen takana teki siitä lukukelvottoman pikkukuvassa. -->
+  <rect y="0" width="1200" height="378" fill="url(#stars)" opacity="0.75"/>
+
+  <!-- clipart -->
+  <image xlink:href="clipart/boombox.svg"      x="40"  y="330" width="210" height="217"/>
+  <image xlink:href="clipart/discoball.svg"    x="990" y="60"  width="140" height="170"/>
+  <image xlink:href="clipart/party-popper.svg" x="960" y="420" width="200" height="156"/>
+  <image xlink:href="clipart/star.svg"         x="60"  y="60"  width="120" height="120"/>
+
+  <!-- otsikko: kerrostettu varjo jäljittelee sivuston WordArt-ilmettä -->
+  <g font-family="DejaVu Sans, Verdana, sans-serif" font-weight="bold" text-anchor="middle">
+    <g transform="translate(600,250) skewY(-3)">
+      <text x="6"  y="6"  font-size="112" fill="#9900ff">EIPÄ VISSIIN!</text>
+      <text x="3"  y="3"  font-size="112" fill="#ff00cc">EIPÄ VISSIIN!</text>
+      <text x="0"  y="0"  font-size="112" fill="#ffff00">EIPÄ VISSIIN!</text>
+    </g>
+    <text x="600" y="335" font-size="64" fill="#00ffff" letter-spacing="18">2026</text>
+  </g>
+
+  <rect x="0" y="380" width="1200" height="10" fill="url(#rainbow)"/>
+
+  <g font-family="DejaVu Sans, Verdana, sans-serif" text-anchor="middle" fill="#ffffff">
+    <text x="600" y="455" font-size="46" font-weight="bold" fill="#00ff00">LA 12.9.2026</text>
+    <text x="600" y="505" font-size="34">TUKIKOHTA · OULU</text>
+    <text x="600" y="551" font-size="26" fill="#ffff00">OVET 17:30 · K-18 · 12 € OVELTA</text>
+    <text x="600" y="596" font-size="24" fill="#ccccdd">Yksipäiväinen DIY-festari Oulussa</text>
+  </g>
+</svg>

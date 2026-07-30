@@ -157,10 +157,15 @@ img { max-width: 100%; height: auto; border: 0; }
 .slot[data-slot] img { display: none; }
 
 /* Julisteen pystysuunta on kiinteä 420 mm, joten clipartin korkeus on
-   katkaistava. Ilman näitä iso GIF työntää alaosan ulos sivulta ja
-   overflow:hidden leikkaa sen pois. Leveys skaalautuu mukana. */
-.poster__top .slot img       { max-height: 30mm; width: auto; }
-.poster__clipart-row .slot img { max-height: 36mm; width: auto; }
+   lyötävä lukkoon. Korkeus annetaan tässä millimetreinä ja leveys
+   lasketaan kuvasuhteesta — näin lopputulos ei riipu siitä, minkä
+   kokoiseksi kuvatiedosto sattuu itsensä ilmoittamaan.
+
+   Tämä on tahallaan "height", ei "max-height": moni Openclipartin SVG
+   ilmoittaa luontaiseksi kooksi satoja millimetrejä, jolloin pelkkä
+   yläraja ei riittäisi vaan kuva venyisi yli sivun. */
+.poster__top .slot img         { height: 30mm; width: auto; max-width: 60mm; }
+.poster__clipart-row .slot img { height: 36mm; width: auto; max-width: 80mm; }
 
 /* ------------------------------------------------------------
    Yläreuna

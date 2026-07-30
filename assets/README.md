@@ -1,94 +1,142 @@
-# Kuvamanifesti — mitä `assets/`-kansioon kuuluu
+# Kuvamanifesti — mitä `assets/`-kansiossa on
 
-Jokainen kuvapaikka sivustolla ja julisteessa on merkitty näin:
+**Kaikki kuvapaikat on täytetty.** Tämä tiedosto kertoo mitä missäkin on,
+mistä se on peräisin ja miten sen vaihtaa.
+
+## Miten kuvapaikka toimii
+
+Kuvapaikka on `<span class="slot">`, jonka sisällä on `<img>`:
 
 ```html
-<span class="slot" data-slot="clipart/boombox.gif · 90×90">
-  <img src="/assets/clipart/boombox.gif" alt="" width="90" height="90">
+<span class="slot slot--inline">
+  <img src="/assets/clipart/boombox.svg" alt="" width="96" height="99">
 </span>
 ```
 
-Niin kauan kuin `data-slot`-attribuutti on paikallaan, ruudulle piirtyy
-vaaleanpunainen katkoviivalaatikko jossa lukee tiedostonimi ja koko.
+Jos johonkin kohtaan haluaa väliaikaisen paikkamerkin, lisää `data-slot`-
+attribuutti: `<span class="slot" data-slot="clipart/uusi.svg · 96×99">`.
+Silloin ruudulle piirtyy vaaleanpunainen katkoviivalaatikko, jossa lukee
+tiedostonimi ja koko, ja `<img>` piilotetaan. Poista attribuutti kun kuva on
+paikallaan. Tyylit ovat `site.css`:ssä ja `poster.css`:ssä kohdassa
+"PLACEHOLDER-SLOTIT".
 
-**Kun olet pudottanut oikean kuvan paikalleen: poista pelkkä `data-slot`-attribuutti.**
-Luokka `slot` jää — se hoitaa asemoinnin. Kuva ilmestyy näkyviin samalla.
+---
 
-Etsi kaikki jäljellä olevat paikat komennolla:
+## Miksi SVG eikä GIF
+
+Alkuperäinen suunnitelma oli GIF, mutta juliste tulostetaan A3-kokoon, jossa
+clipart on n. 36 mm leveä. 300 dpi:llä se on ~425 px, ja aikakauden GIF-kuvat
+ovat tyypillisesti 100–200 px. Openclipartin SVG:t skaalautuvat terävinä mihin
+kokoon vain, joten ne kelpaavat sekä sivustolle että painoon.
+
+Jos haluat *tahallaan* rakeisen fotokopio-ilmeen, se on tyylivalinta — mutta
+tee se tietoisesti, älä vahingossa liian pienellä bittikartalla.
+
+---
+
+## Sivuston kuvat
+
+| Tiedosto | Piirtokoko | Missä |
+|---|---|---|
+| `clipart/sunburst.svg` | 120 × 60 | hero, otsikon yllä |
+| `clipart/boombox.svg` | 96 × 99 | hero, otsikon alla |
+| `clipart/new-badge.svg` | 44 × 20 | Esiintyjät-otsikon vieressä |
+| `clipart/under-construction.svg` | 120 × 90 | footer |
+| `bg/stars-tile.svg` | 140 × 140, toistuva | koko sivun tausta |
+
+## Julisteen kuvat
+
+Korkeus lukitaan `poster.css`:ssä millimetreinä, leveys tulee kuvasuhteesta.
+
+| Tiedosto | Korkeus tulosteessa | Missä |
+|---|---|---|
+| `clipart/star.svg` | 30 mm | yläreuna vasen |
+| `clipart/party-popper.svg` | 30 mm | yläreuna oikea |
+| `clipart/boombox.svg` | 36 mm | clipart-rivi |
+| `clipart/break-dancer.svg` | 36 mm | clipart-rivi |
+| `clipart/discoball.svg` | 36 mm | clipart-rivi |
+
+## Vielä tyhjä: `assets/buttons/`
+
+88 × 31 -napit tukijoille tai kaverifestareille. Nappirivit on **kommentoitu
+pois** sekä `index.html`:n footerista että `poster.html`:n alaosasta — poista
+kommenttimerkit kun nappeja on, tai poista lohkot kokonaan jos tukijoita ei
+tule. Valmiita nappeja ja tyhjiä pohjia: <https://cyber.dabamos.de/88x31/>
+
+## Generoidut kuvat
+
+| Tiedosto | Koko | Lähde |
+|---|---|---|
+| `../favicon.png` | 64 × 64 | `favicon-src.svg` |
+| `social/apple-touch-icon.png` | 180 × 180 | `favicon-src.svg` |
+| `social/og-image.png` | 1200 × 630 | `og-image.svg` |
+
+Uudelleenrenderöinti (repon juuresta):
 
 ```sh
-grep -rn 'data-slot' index.html poster.html
+cd assets
+rsvg-convert -w   64 -h  64 favicon-src.svg -o ../favicon.png
+rsvg-convert -w  180 -h 180 favicon-src.svg -o social/apple-touch-icon.png
+rsvg-convert -w 1200 -h 630 og-image.svg    -o social/og-image.png
 ```
 
----
-
-## Tarvittavat tiedostot
-
-### `assets/clipart/` — sivusto
-
-| Tiedosto | Koko (px) | Missä | Ehdotus |
-|---|---|---|---|
-| `sunburst.gif` | 90 × 90 | hero, otsikon vasen puoli | säteilevä tähti / aurinko |
-| `boombox.gif` | 90 × 90 | hero, otsikon oikea puoli | mankka tai kasettisoitin |
-| `new-blink.gif` | 40 × 20 | esiintyjät-otsikon vieressä | vilkkuva "NEW!" |
-| `under-construction.gif` | 100 × 34 | footer | kaivinkone / liikennemerkki |
-
-### `assets/clipart/` — juliste (isommat, tulostuslaatu)
-
-| Tiedosto | Koko (px) | Missä |
-|---|---|---|
-| `star-1.gif` | 160 × 160 | julisteen ylävasen |
-| `star-2.gif` | 160 × 160 | julisteen yläoikea |
-| `boombox.gif` | 200 × 200 | clipart-rivi (sama tiedosto kuin sivustolla, isompi kuva käy molempiin) |
-| `dancers.gif` | 200 × 200 | clipart-rivi |
-| `discoball.gif` | 200 × 200 | clipart-rivi |
-
-> **Huom. tulostuskoko.** `poster.css` rajaa clipartin korkeuden: yläreunan
-> kuvat enintään **30 mm**, clipart-rivin kuvat enintään **36 mm**. Leveys
-> skaalautuu mukana. Rajaus on pakollinen — juliste on kiinteä 420 mm korkea,
-> ja ilman kattoa iso GIF työntää alaosan sivun ulkopuolelle.
+> **Miksi `og-image.svg` on `assets/`-kansion juuressa eikä `social/`:ssa:**
+> librsvg lataa ulkoisia kuvaviittauksia vain samasta kansiosta tai sen
+> alikansioista. `social/`:sta katsottuna `../clipart/...` ei latautuisi, ja
+> clipart jäisi hiljaisesti pois renderöidystä kuvasta — virheilmoitusta ei
+> tule, kuva vain on tyhjä.
 >
-> 36 mm on 300 dpi:llä ~425 px. Taulukon px-koot ovat *asettelua varten*; ota
-> julisteeseen isoin saatavilla oleva versio, tai mieluiten SVG (Openclipart),
-> joka skaalautuu terävänä mihin kokoon vain.
-> Jos ajat aidolla 90-luvun GIF-rakeisuudella, se on tyylivalinta — pidä se
-> tietoisena päätöksenä, älä vahinkona.
-
-### `assets/buttons/` — 88 × 31 napit
-
-| Tiedosto | Koko (px) | Missä |
-|---|---|---|
-| `tuki-1.gif` | 88 × 31 | footer + juliste |
-| `tuki-2.gif` | 88 × 31 | footer + juliste |
-| `tuki-3.gif` | 88 × 31 | footer + juliste |
-
-Nämä ovat klassiset "web-napit". Käytä yhteistyökumppaneille, kaverifestareille
-tai tee omat. Poista ylimääräiset `<span class="slot">`-lohkot jos tarvitset
-vähemmän kuin kolme.
-
-> **Tällä hetkellä nappirivit on kommentoitu pois** sekä `index.html`:n
-> footerista että `poster.html`:n alaosasta. Poista kommenttimerkit kun
-> nappeja on. Jos tukijoita ei tule, voit poistaa lohkot kokonaan.
-
-### `assets/bg/`
-
-| Tiedosto | Koko (px) | Missä |
-|---|---|---|
-| `stars-tile.gif` | 100–200 px neliö, saumaton | koko sivun tausta |
-
-Jos et lisää tätä, CSS piirtää tähdet itse eikä mikään hajoa.
-
-### `assets/social/` ja juuri
-
-| Tiedosto | Koko | Missä |
-|---|---|---|
-| `og-image.png` | 1200 × 630 | some-jaon esikatselukuva |
-| `favicon.ico` | 32 × 32 (juureen, ei tähän kansioon) | selaimen välilehti |
-
-Nopein tapa `og-image.png`:iin: avaa `poster.html`, ota kuvakaappaus ja rajaa
-1200 × 630.
+> **Fontti:** `og-image.svg` käyttää yleistä sans-serifiä, ei Impactia, jotta
+> se renderöityy samannäköisenä myös koneella jolla Impactia ei ole. Otsikko
+> ei siis ole pikselintarkasti sama kuin sivustolla.
 
 ---
+
+## Mistä nämä ovat peräisin
+
+Kaikki arkistokuvat ovat **Openclipartista** ja **CC0-lisenssillä** (public
+domain) — vapaasti käytettävissä myös kaupallisesti, ilman nimimainintaa.
+Lähteet on kirjattu tähän silti, jotta ne voi tarkistaa ja korvata.
+
+| Tiedosto | Openclipart-tunnus | Alkuperäinen nimi |
+|---|---|---|
+| `clipart/sunburst.svg` | [349170](https://openclipart.org/detail/349170/) | half-starburst-rainbow-rays |
+| `clipart/boombox.svg` | [334706](https://openclipart.org/detail/334706/) | 1980s-boombox |
+| `clipart/under-construction.svg` | [340982](https://openclipart.org/detail/340982/) | under-construction |
+| `clipart/star.svg` | [215675](https://openclipart.org/detail/215675/) | gold-fivepointed-star |
+| `clipart/party-popper.svg` | [329042](https://openclipart.org/detail/329042/) | party-popper |
+| `clipart/break-dancer.svg` | [310285](https://openclipart.org/detail/310285/) | break-dancing-kid |
+| `clipart/discoball.svg` | [346657](https://openclipart.org/detail/346657/) | disco-ball |
+
+Itse tehdyt (ei ulkoista lisenssiä):
+
+| Tiedosto | Miksi itse tehty |
+|---|---|
+| `clipart/new-badge.svg` | Tekstillinen merkki — sisältö halutaan hallita itse. Vilkkuu CSS-animaatiolla, joka pysähtyy `prefers-reduced-motion`-asetuksella. |
+| `bg/stars-tile.svg` | Tiilen pitää toistua saumattomasti; arkistokuvat eivät toistu. |
+| `favicon-src.svg`, `og-image.svg` | Koosteita yllä olevista. |
+
+> **Huom. XML-kommentit SVG:ssä.** SVG on XML, eikä XML-kommentin sisällä saa
+> esiintyä kahta peräkkäistä tavuviivaa. Jos kirjoitat kommenttiin CSS-muuttujan
+> sen oikeassa muodossa, tiedosto lakkaa jäsentymästä ja selain jättää koko
+> kuvan lataamatta ilman näkyvää virhettä. Tämä ehti jo kerran tapahtua
+> `stars-tile.svg`:lle.
+
+## Vaihtaminen
+
+1. Lataa uusi SVG Openclipartista: `https://openclipart.org/download/<id>/`
+2. Tallenna `assets/clipart/`-kansioon.
+3. Päivitä `src` ja `width`/`height` HTML:ssä. Pidä kuvasuhde oikeana —
+   `site.css`:n `img { height: auto }` laskee korkeuden leveydestä, joten
+   väärä `height` ei venytä kuvaa, mutta varaa väärän tilan latauksen ajaksi.
+4. Julisteessa korkeus tulee `poster.css`:stä, joten sinne ei tarvitse koskea.
+
+Tarkista lopuksi että tiedosto on kelvollista XML:ää:
+
+```sh
+python3 -c "import xml.dom.minidom,sys; xml.dom.minidom.parse(sys.argv[1])" tiedosto.svg
+```
+
 
 ## Mistä clipartia
 

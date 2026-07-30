@@ -72,8 +72,30 @@ Jäljellä:
    `robots.txt`.
 4. **FB-eventti** — `index.html`, Yhteystiedot.
 5. **Tukijoiden 88×31-napit** — kommentoitu pois molemmista tiedostoista.
-6. **Kuvat** — ks. [`assets/README.md`](assets/README.md). Kaikki
-   clipart-paikat ovat vielä tyhjiä.
+   Ainoat vielä tyhjät kuvapaikat.
+
+Clipart on paikallaan: kaikki muut kuvapaikat on täytetty CC0-lisensoiduilla
+SVG-kuvilla Openclipartista, ja favicon sekä some-jakokuva on generoitu niistä.
+Ks. [`assets/README.md`](assets/README.md).
+
+### Fontti, joka pitää tarkistaa ennen painoa
+
+Otsikot käyttävät fonttipinoa `Impact, Haettenschweiler, Arial Black,
+sans-serif`. **Impact ei kuulu Linuxin vakiofontteihin.** Jos tulostat
+julisteen koneella jolle sitä ei ole asennettu, otsikko latautuu geneerisellä
+sans-serifillä, joka on selvästi leveämpi — ilme muuttuu ja pahimmillaan
+teksti ei mahdu riville.
+
+Tarkista ennen kuin viet julisteen painoon:
+
+```sh
+fc-list | grep -i -E 'impact|arial black'
+```
+
+Jos tulos on tyhjä, joko asenna `ttf-mscorefonts-installer` tai vaihda
+otsikkofontiksi vapaasti lisensoitu Impact-tyylinen leikkaus (esim. Anton,
+SIL OFL) ja liitä se mukaan repoon `@font-face`-määrittelyllä. Silloin
+juliste renderöityy samanlaisena joka koneella.
 
 ## Värien vaihtaminen
 

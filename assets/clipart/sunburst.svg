@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 500 250" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs/>
+<g id="lines">
+<path d="M0 0L0 250L500 250L500 0L0 0Z" fill="#ffffff" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M317 0L308.25 32.6875L279.125 141.344L250 250L316.688 159.406L383.406 68.8125L434.062 0L317 0Z" fill="#ffd800" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M500 183L250 250L500 250L500 183ZM250 250L0 222.125L0 249.788L250 250Z" fill="#004dff" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M0 65.9688L0 183L250 250L0 65.9688Z" fill="#750787" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M0 0L11.375 11.375L90.9062 90.9062L170.469 170.469L250 250L204.906 146.938L159.781 43.875L140.562 0L0 0Z" fill="#e40303" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M183.031 0L191.781 32.6875L220.875 141.344L250 250L262.469 138.188L274.938 26.4062L277.875 0L183.031 0Z" fill="#ff8c00" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M500 0.03125L488.656 11.375L409.094 90.9062L329.562 170.469L250 250L353.062 204.906L456.125 159.781L500 140.594L500 0.03125Z" fill="#008026" fill-rule="nonzero" opacity="1" stroke="none"/>
+</g>
+</svg>
