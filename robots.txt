@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# TODO: vaihda oikea domain kun se on hankittu
 Sitemap: https://eipavissiin.fi/sitemap.xml
