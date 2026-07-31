@@ -280,11 +280,14 @@ img { max-width: 100%; height: auto; border: 0; }
 
 .poster__lineup li {
   font-family: var(--font-display);
-  /* 10.5 mm eikä 12 mm: kuudes bändi vei lähes koko jäljellä olleen
-     pystytilan A3:lla. Jos bändejä tulee lisää, pienennä tätä edelleen
-     ja tarkista kokonaiskorkeus — sivu on kiinteä 420 mm, ja ylimenevä
-     osa katoaa overflow:hiddenin taakse ilman varoitusta. */
-  font-size: 10.5mm;
+  /* Takaisin 12 mm:iin: "kaikki esiintyjät julkaistaan" -rivin poisto
+     vapautti n. 10 mm pystytilaa, joten kuudes bändi mahtuu täydellä
+     koolla. Sisältö vie nyt n. 382 mm käytettävissä olevasta 392 mm:stä.
+
+     Jos bändejä tulee lisää, pienennä tätä ja tarkista kokonaiskorkeus —
+     sivu on kiinteä 420 mm, ja ylimenevä osa katoaa overflow:hiddenin
+     taakse ilman varoitusta. */
+  font-size: 12mm;
   line-height: 1.15;
   text-transform: uppercase;
   color: #fff;
