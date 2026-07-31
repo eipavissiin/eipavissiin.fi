@@ -280,7 +280,11 @@ img { max-width: 100%; height: auto; border: 0; }
 
 .poster__lineup li {
   font-family: var(--font-display);
-  font-size: 12mm;
+  /* 10.5 mm eikä 12 mm: kuudes bändi vei lähes koko jäljellä olleen
+     pystytilan A3:lla. Jos bändejä tulee lisää, pienennä tätä edelleen
+     ja tarkista kokonaiskorkeus — sivu on kiinteä 420 mm, ja ylimenevä
+     osa katoaa overflow:hiddenin taakse ilman varoitusta. */
+  font-size: 10.5mm;
   line-height: 1.15;
   text-transform: uppercase;
   color: #fff;
