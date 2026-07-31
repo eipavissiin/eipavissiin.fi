@@ -40,7 +40,7 @@ tee se tietoisesti, älä vahingossa liian pienellä bittikartalla.
 |---|---|---|
 | `clipart/sunburst.svg` | 120 × 60 | hero, otsikon yllä |
 | `clipart/boombox.svg` | 96 × 99 | hero, otsikon alla |
-| `clipart/new-badge.svg` | 44 × 20 | Esiintyjät-otsikon vieressä |
+| `clipart/badge-*.svg`, `clipart/new-badge.svg` | ks. alla | Esiintyjät-osio, otsikko ja bändien nimet |
 | `clipart/under-construction.svg` | 120 × 90 | footer |
 | `bg/stars-tile.svg` | 140 × 140, toistuva | koko sivun tausta |
 
@@ -55,6 +55,35 @@ Korkeus lukitaan `poster.css`:ssä millimetreinä, leveys tulee kuvasuhteesta.
 | `clipart/boombox.svg` | 36 mm | clipart-rivi |
 | `clipart/break-dancer.svg` | 36 mm | clipart-rivi |
 | `clipart/discoball.svg` | 36 mm | clipart-rivi |
+
+## Vilkkuvat merkit
+
+| Tiedosto | Teksti | Leveys | Missä |
+|---|---|---|---|
+| `clipart/badge-best.svg` | BEST! | 70 | Esiintyjät-otsikko |
+| `clipart/badge-wow.svg` | WOW! | 64 | Trischloss |
+| `clipart/badge-cool.svg` | COOL! | 70 | Jännite |
+| `clipart/badge-rules.svg` | RULES! | 76 | Tornion syntymättömät ministerit |
+| `clipart/badge-love.svg` | LOVE! | 70 | Mielikarkki |
+| `clipart/badge-hot.svg` | HOT! | 64 | Pahennustakki |
+| `clipart/new-badge.svg` | NEW! | 44 | Piehingin perkele |
+
+Korkeus on aina 20 px. Vaihtaminen: vaihda `src` ja `width` — `width`
+**täytyy** vastata SVG:n omaa leveyttä, muuten merkki venyy.
+
+Merkit ovat koristeita, joten `alt=""`. Ruudunlukija ohittaa ne, eikä
+bändin nimen perään lueta "WOW".
+
+Uuden merkin tekeminen: kopioi jokin `badge-*.svg`, vaihda teksti, värit
+(`fill`, `stroke`) ja `animation`-kesto. Kestot on tahallaan eri pituisia
+(0.8–1.7 s), jotta merkit eivät vilku tahdissa — se näyttää liian
+järjestelmälliseltä.
+
+**Vilkkuminen pysähtyy** käyttöjärjestelmän "vähennä liikettä"
+-asetuksella. Älä poista `@media (prefers-reduced-motion: reduce)`
+-lohkoa: vilkkuva sisältö on osalle ihmisistä oikeasti ongelma.
+
+Julisteessa merkkejä ei ole — paperilla ei vilku mikään.
 
 ## Vielä tyhjä: `assets/buttons/`
 
@@ -112,7 +141,7 @@ Itse tehdyt (ei ulkoista lisenssiä):
 
 | Tiedosto | Miksi itse tehty |
 |---|---|
-| `clipart/new-badge.svg` | Tekstillinen merkki — sisältö halutaan hallita itse. Vilkkuu CSS-animaatiolla, joka pysähtyy `prefers-reduced-motion`-asetuksella. |
+| `clipart/badge-*.svg`, `clipart/new-badge.svg` | Tekstillisiä merkkejä — sisältö halutaan hallita itse. Vilkkuvat CSS-animaatiolla, joka pysähtyy `prefers-reduced-motion`-asetuksella. |
 | `bg/stars-tile.svg` | Tiilen pitää toistua saumattomasti; arkistokuvat eivät toistu. |
 | `favicon-src.svg`, `og-image.svg` | Koosteita yllä olevista. |
 

@@ -470,6 +470,16 @@ hr.rainbow {
   font-family: var(--font-fun);
 }
 
+/* Vilkkuva merkki bändin nimen perässä. Kiinteä 20 px korkeus, jotta se
+   ei kasva headline-bändin ison fonttikoon mukana — merkin kuuluu olla
+   pieni lisä nimen vieressä, ei toinen otsikko. */
+.lineup__badge {
+  vertical-align: middle;
+  margin-left: 0.4em;
+  height: 20px;
+  width: auto;
+}
+
 /* ------------------------------------------------------------
    Taulukko
    ------------------------------------------------------------ */
