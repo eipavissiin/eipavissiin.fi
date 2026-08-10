@@ -165,7 +165,9 @@ img { max-width: 100%; height: auto; border: 0; }
    ilmoittaa luontaiseksi kooksi satoja millimetrejä, jolloin pelkkä
    yläraja ei riittäisi vaan kuva venyisi yli sivun. */
 .poster__top .slot img         { height: 30mm; width: auto; max-width: 60mm; }
-.poster__clipart-row .slot img { height: 36mm; width: auto; max-width: 80mm; }
+/* 32 mm eikä 36 mm: QR:n INSTAGRAM-teksti kasvatti alareunan korkeutta
+   n. 6 mm, ja se maksetaan täältä. Clipart on julisteen joustavin osa. */
+.poster__clipart-row .slot img { height: 32mm; width: auto; max-width: 80mm; }
 
 /* ------------------------------------------------------------
    Yläreuna
@@ -366,11 +368,27 @@ img { max-width: 100%; height: auto; border: 0; }
 
    Kiinteä mitta molempiin suuntiin, koska QR on neliö ja vääristyneenä
    se ei luota. Valkoinen tausta ja quiet zone tulevat itse tiedostosta. */
-.poster__qr {
+.poster__qr-block {
   flex: 0 0 auto;
+  text-align: center;
+}
+
+.poster__qr {
   width: 28mm;
   height: 28mm;
   display: block;
+}
+
+/* Paljas QR ei kerro minne se vie. Teksti on tähän parempi kuin
+   Instagramin logo: logo on tavaramerkki, jonka käytölle on omat
+   sääntönsä, ja sana toimii myös mustavalkoisena valokopiona. */
+.poster__qr-label {
+  display: block;
+  margin-top: 1.5mm;
+  font-family: var(--font-display);
+  font-size: 3.5mm;
+  letter-spacing: 0.12em;
+  color: var(--yellow);
 }
 
 .poster__url {
