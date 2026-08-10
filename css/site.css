@@ -470,6 +470,34 @@ hr.rainbow {
   font-family: var(--font-fun);
 }
 
+/* Bändin nimi linkkinä omalle sivulle.
+
+   Väri peritään nimeltä (:visited mukaan lukien), jotta headline-bändin
+   pinkki ja muiden musta säilyvät — oletuslinkin sininen ja violetti
+   rikkoisivat julisteilmeen. Alleviivaus on pisteviiva, jotta linkki
+   kuitenkin näkyy linkiltä.
+
+   Tarvitsee oman :visited-säännön, koska yleinen "a:visited" on
+   spesifisyydeltään vahvempi kuin pelkkä luokka. */
+.lineup__link,
+.lineup__link:visited {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 0.1em dotted currentColor;
+}
+
+.lineup__link:hover,
+.lineup__link:focus-visible {
+  color: var(--hotpink);
+  border-bottom-style: solid;
+}
+
+/* Headline on jo pinkki, joten se korostuu violetilla. */
+.lineup__item--headline .lineup__link:hover,
+.lineup__item--headline .lineup__link:focus-visible {
+  color: var(--purple);
+}
+
 /* Vilkkuva merkki bändin nimen perässä. Kiinteä 20 px korkeus, jotta se
    ei kasva headline-bändin ison fonttikoon mukana — merkin kuuluu olla
    pieni lisä nimen vieressä, ei toinen otsikko. */
