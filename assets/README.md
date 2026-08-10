@@ -85,6 +85,44 @@ järjestelmälliseltä.
 
 Julisteessa merkkejä ei ole — paperilla ei vilku mikään.
 
+## QR-koodi
+
+`qr-instagram.svg` — osoitteeseen `https://instagram.com/eipavissiinfestival`.
+Julisteen alareunassa, 28 mm.
+
+Vektorina eikä bittikarttana, koska JPEG-pakkauksen artefaktit mustan ja
+valkoisen rajalla haittaavat lukemista pienessä koossa.
+Virheenkorjaustaso **Q** (n. 25 %), koska julistetta todennäköisesti
+valokopioidaan.
+
+Kaksi asiaa joita ei saa muuttaa:
+
+- **Valkoinen tausta.** Musta koodi tummalla pohjalla ei luota lainkaan.
+- **Quiet zone.** Reunan 4 moduulin tyhjä alue sisältyy viewBoxiin. Jos
+  rajaat sen pois, koodi lakkaa toimimasta vaikka näyttää ehjältä.
+
+28 mm on lähellä alarajaa: nyrkkisääntö on että koodi luetaan noin
+kymmenkertaiselta etäisyydeltä, eli tästä n. 28 cm:stä.
+
+Uudelleenluonti, jos osoite muuttuu:
+
+```sh
+python3 -m venv /tmp/qrvenv && /tmp/qrvenv/bin/pip install qrcode
+/tmp/qrvenv/bin/python - <<'EOF'
+import qrcode
+qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_Q, border=4)
+qr.add_data("https://instagram.com/eipavissiinfestival"); qr.make(fit=True)
+m = qr.get_matrix(); n = len(m)
+path = "".join(f"M{x},{y}h1v1h-1z" for y,r in enumerate(m) for x,v in enumerate(r) if v)
+open("assets/qr-instagram.svg","w").write(
+  f'<svg xmlns="http://www.w3.org/2000/svg" width="{n}mm" height="{n}mm" viewBox="0 0 {n} {n}">'
+  f'<rect width="{n}" height="{n}" fill="#fff"/><path d="{path}" fill="#000"/></svg>')
+EOF
+```
+
+**Tarkista aina lopputulos puhelimella ennen painoa.** Rakenteellisesti
+kelvollinen QR voi silti olla väärä.
+
 ## Vielä tyhjä: `assets/buttons/`
 
 88 × 31 -napit tukijoille tai kaverifestareille. Nappirivit on **kommentoitu

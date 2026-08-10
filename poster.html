@@ -84,13 +84,22 @@
 
     <!-- ============ ALAREUNA ============ -->
     <div class="poster__footer">
-      <p class="poster__url">EIPAVISSIIN.FI</p>
-      <p class="poster__smallprint">
-        Sorvarintie 5, 90520 Oulu &nbsp;·&nbsp; eipavissiinfestival@proton.me
-        &nbsp;·&nbsp; @eipavissiin_official<br>
-        Omat eväät mukaan — paikan päällä ei ole myyntiä. Turvallisemman tilan
-        periaatteet ja saavutettavuustiedot verkkosivuilla.
-      </p>
+      <!-- QR ja teksti vierekkäin, ei allekkain: julisteen pystytila on
+           kiinteä 420 mm eikä 28 mm:n koodille ole tilaa omalla rivillään. -->
+      <div class="poster__footer-row">
+        <img class="poster__qr" src="/assets/qr-instagram.svg"
+             alt="QR-koodi Instagram-tilille @eipavissiinfestival"
+             width="120" height="120">
+        <div class="poster__footer-text">
+          <p class="poster__url">EIPAVISSIIN.FI</p>
+          <p class="poster__smallprint">
+            Sorvarintie 5, 90520 Oulu &nbsp;·&nbsp; eipavissiinfestival@proton.me
+            &nbsp;·&nbsp; Instagram @eipavissiinfestival<br>
+            Omat eväät mukaan — paikan päällä ei ole myyntiä. Turvallisemman tilan
+            periaatteet ja saavutettavuustiedot verkkosivuilla.
+          </p>
+        </div>
+      </div>
 
       <!-- TODO: lisää tukijoiden 88×31-napit ja poista kommenttimerkit.
       <div class="poster__sponsors">

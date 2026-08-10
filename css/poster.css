@@ -350,6 +350,29 @@ img { max-width: 100%; height: auto; border: 0; }
   width: 100%;
 }
 
+.poster__footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6mm;
+  width: 100%;
+}
+
+.poster__footer-text { flex: 1 1 auto; }
+
+/* 28 mm on lähellä alarajaa julisteessa: nyrkkisääntö on, että koodi
+   luetaan noin kymmenkertaiselta etäisyydeltä eli tästä n. 28 cm:stä.
+   Pienemmäksi ei kannata mennä.
+
+   Kiinteä mitta molempiin suuntiin, koska QR on neliö ja vääristyneenä
+   se ei luota. Valkoinen tausta ja quiet zone tulevat itse tiedostosta. */
+.poster__qr {
+  flex: 0 0 auto;
+  width: 28mm;
+  height: 28mm;
+  display: block;
+}
+
 .poster__url {
   margin: 0;
   font-family: var(--font-display);
