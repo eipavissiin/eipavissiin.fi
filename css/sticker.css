@@ -1,0 +1,259 @@
+@charset "utf-8";
+
+/* ============================================================
+   Eipä Vissiin! — sticker.css
+   Pyöreä tarra. Leikkauskoko 60 mm, arkki 66 mm (3 mm leikkuuvara
+   joka reunalle).
+
+   MITAT
+   - 66 mm  arkki / leikkuuvara (bleed). Tausta ulottuu tänne asti.
+   - 60 mm  leikkauslinja. Tähän tarra leikataan.
+   - 50 mm  turva-alue. Kaikki teksti pysyy tämän sisällä.
+
+   Miksi leikkuuvara: pyöreän tarran leikkuri heittää aina hieman.
+   Ilman varaa reunaan tulee valkoinen sirppi. Ilman turva-aluetta
+   teksti leikkautuu.
+
+   Ympyrässä käytettävissä oleva leveys kapenee reunoja kohti:
+   keskellä 50 mm, mutta 20 mm keskustasta ylös tai alas enää
+   2*sqrt(25^2 - 20^2) = 30 mm. Siksi leveimmät rivit ovat keskellä
+   ja lyhyimmät ylhäällä ja alhaalla.
+   ============================================================ */
+
+@page {
+  size: 66mm 66mm;
+  margin: 0;
+}
+
+:root {
+  --navy:    #000080;
+  --hotpink: #ff00cc;
+  --cyan:    #00ffff;
+  --yellow:  #ffff00;
+  --purple:  #9900ff;
+
+  --font-display: Impact, "Haettenschweiler", "Arial Black", sans-serif;
+  --font-body:    Verdana, Geneva, Tahoma, sans-serif;
+
+  --preview: 3;          /* ruudun esikatselun suurennus, ei vaikuta tulosteeseen */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #333;
+  font-family: var(--font-body);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+img { max-width: 100%; height: auto; border: 0; }
+
+/* ------------------------------------------------------------
+   Työkalupalkki (ei tulostu)
+   ------------------------------------------------------------ */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.2rem;
+  background: #c0c0c0;
+  border-bottom: 2px solid #404040;
+  font-size: 0.85rem;
+}
+
+.toolbar__text { margin: 0; flex: 1 1 22rem; line-height: 1.5; }
+
+.toolbar__btn {
+  font: inherit;
+  font-weight: bold;
+  padding: 0.45rem 1rem;
+  background: #c0c0c0;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  border-top:    2px solid #fff;
+  border-left:   2px solid #fff;
+  border-right:  2px solid #404040;
+  border-bottom: 2px solid #404040;
+}
+
+.toolbar__btn:active {
+  border-top:    2px solid #404040;
+  border-left:   2px solid #404040;
+  border-right:  2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+/* ------------------------------------------------------------
+   Näytön esikatselu
+   ------------------------------------------------------------ */
+
+.stage {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  height: calc(66mm * var(--preview) + 4rem);
+}
+
+@media (max-width: 900px) { :root { --preview: 2; } }
+@media (max-width: 560px) { :root { --preview: 1.4; } }
+
+/* ------------------------------------------------------------
+   Tarra
+   ------------------------------------------------------------ */
+
+.sticker {
+  position: relative;
+  width: 66mm;
+  height: 66mm;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+
+  background-color: var(--navy);
+  background-image: url("/assets/bg/stars-tile.svg");
+  background-repeat: repeat;
+  background-size: 18mm 18mm;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+
+  transform: scale(var(--preview));
+  transform-origin: top center;
+}
+
+/* Sisältö turva-alueen sisällä. */
+.sticker__inner {
+  width: 50mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sticker__star {
+  width: 6mm;
+  height: 6mm;
+  display: block;
+  margin-bottom: 0.8mm;
+}
+
+/* ------------------------------------------------------------
+   Nimi — sama WordArt-idea kuin julisteessa, kevennettynä.
+   Varjokerroksia on vähemmän: 60 mm:ssä kolmen varjon pino menisi
+   puuroksi.
+   ------------------------------------------------------------ */
+
+.sticker__title {
+  margin: 0;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  line-height: 0.86;
+  transform: skewY(-3deg);
+}
+
+.sticker__title-a,
+.sticker__title-b {
+  display: block;
+  color: var(--yellow);
+  text-shadow:
+     0.5mm 0.5mm 0 var(--hotpink),
+     1.1mm 1.1mm 0 #000;
+}
+
+.sticker__title-a { font-size: 8.5mm; }
+.sticker__title-b { font-size: 12mm; }
+
+.sticker__rule {
+  width: 34mm;
+  height: 1.4mm;
+  margin: 1.6mm 0 1.4mm;
+  background: linear-gradient(
+    90deg,
+    #ff0000, #ff9900, #ffff00, #00ff00,
+    #00ffff, #0066ff, #9900ff, #ff00cc
+  );
+}
+
+.sticker__year {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 5.5mm;
+  letter-spacing: 0.3em;
+  /* letter-spacing lisää välin myös viimeisen merkin jälkeen, mikä
+     siirtäisi tekstin optisesti vasemmalle. Kompensoidaan. */
+  text-indent: 0.3em;
+  color: var(--cyan);
+  text-shadow: 0.4mm 0.4mm 0 #000;
+}
+
+.sticker__url {
+  margin: 1.2mm 0 0;
+  font-family: var(--font-body);
+  font-weight: bold;
+  font-size: 2.9mm;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+/* ------------------------------------------------------------
+   Apuympyrät — vain ruudulle
+   ------------------------------------------------------------ */
+
+.guide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.guide--cut {
+  width: 60mm;
+  height: 60mm;
+  border: 0.3mm dashed rgba(255, 255, 255, 0.85);
+}
+
+.guide--safe {
+  width: 50mm;
+  height: 50mm;
+  border: 0.3mm dotted rgba(255, 0, 204, 0.85);
+}
+
+/* ------------------------------------------------------------
+   Tuloste
+   ------------------------------------------------------------ */
+
+@media print {
+  body { background: #fff; }
+
+  .toolbar { display: none; }
+
+  /* Apuympyrät eivät kuulu painoaineistoon. */
+  .guide { display: none; }
+
+  .stage {
+    display: block;
+    padding: 0;
+    height: auto;
+  }
+
+  .sticker {
+    transform: none;      /* täysi koko paperille */
+    width: 66mm;
+    height: 66mm;
+    /* Pyöristys pois tulosteesta: leikkuuvaran kuuluu olla täyttä
+       väriä reunaan asti, muuten kulmiin jää valkoista jota leikkuri
+       ei välttämättä osu peittämään. */
+    border-radius: 0;
+    break-inside: avoid;
+  }
+}

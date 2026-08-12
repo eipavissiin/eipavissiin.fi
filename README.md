@@ -12,9 +12,11 @@ Ei build-vaihetta, ei riippuvuuksia, ei frameworkkia. Pelkkää HTML:ää ja CSS
 eipa-vissiin/
 ├── index.html          yksisivuinen sivusto
 ├── poster.html         A3-juliste (297 × 420 mm), tulostettava
+├── sticker.html        pyöreä tarra, leikkauskoko 60 mm
 ├── css/
 │   ├── site.css        sivuston tyylit (paletti muuttujissa ylhäällä)
-│   └── poster.css      julisteen tyylit, mitat mm:einä
+│   ├── poster.css      julisteen tyylit, mitat mm:einä
+│   └── sticker.css     tarran tyylit, mitat mm:einä
 ├── assets/
 │   ├── README.md       ← KUVAMANIFESTI + clipart-lähteet
 │   ├── clipart/        clipart-kuvat
@@ -117,6 +119,32 @@ Tulostusdialogissa:
   julisteesta tulee valkoinen
 
 Työkalupalkki ja ruudun skaalaus eivät tulostu.
+
+## Tarran tulostaminen
+
+Avaa `sticker.html`, paina **Tulosta / PDF**. Samat asetukset kuin
+julisteessa, paitsi koko: **66 × 66 mm**, marginaalit ei mitään,
+taustagrafiikat päälle.
+
+Mitat:
+
+| | |
+|---|---|
+| **66 mm** | arkki eli leikkuuvara (bleed). Tausta ulottuu tänne asti. |
+| **60 mm** | leikkauslinja. Tähän tarra leikataan. |
+| **50 mm** | turva-alue. Kaikki teksti pysyy tämän sisällä. |
+
+Apuympyrät näkyvät vain ruudulla — tulosteeseen ja PDF:ään ne eivät tule.
+
+**Miksi leikkuuvara.** Pyöreän tarran leikkuri heittää aina hieman. Ilman
+3 mm:n varaa reunaan tulee valkoinen sirppi, ja ilman turva-aluetta teksti
+leikkautuu. Jos tarrapaino kysyy leikkuuvaraa, vastaus on 3 mm joka reunalla.
+
+**Ympyrä kaventuu reunoja kohti.** Keskellä käytettävissä on 50 mm, mutta
+20 mm keskustasta ylös tai alas enää `2 × √(25² − 20²) = 30 mm`. Siksi
+leveimmät rivit ovat keskellä ja lyhyimmät ylhäällä ja alhaalla. Jos
+muutat tekstejä tai kokoja, tarkista että rivi mahtuu **sillä korkeudella**
+eikä vain keskellä.
 
 ### Painovalmis versio
 
