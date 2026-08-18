@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!-- GENEROITU TIEDOSTO — älä muokkaa käsin.
+     Lähde: poster.html.  Generointi: python3 bin/build-poster-print -->
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eipä Vissiin! 2026 — juliste, painovalmis (A3 + leikkuuvara)</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/css/poster.css">
+<link rel="stylesheet" href="/css/poster-bleed.css">
+</head>
+
+<body>
+
+<!-- Tämä palkki ei tulostu. -->
+<div class="toolbar">
+  <p class="toolbar__text">
+    <strong>Painovalmis versio.</strong> Arkki 317×440&nbsp;mm, leikkuukoko
+    A3 (297×420&nbsp;mm), leikkuuvara 5&nbsp;mm, leikkuumerkit mukana.
+    Tallenna PDF:ksi <strong>omalla paperikoolla 317 × 440&nbsp;mm</strong>,
+    marginaalit <em>ei mitään</em>, taustagrafiikat <em>päälle</em>.
+    Ohjeet: ks. README, kohta “Painovalmis PDF”.
+  </p>
+  <button class="toolbar__btn" type="button" onclick="window.print()">Tulosta / PDF</button>
+  <a class="toolbar__btn" href="/poster.html">← Tavallinen A3</a>
+</div>
+
+<div class="stage">
+  <div class="sheet">
+    <div class="poster">
+
+      <!-- ============ YLÄREUNA ============ -->
+      <div class="poster__top">
+        <span class="slot">
+          <img src="/assets/clipart/star.svg" alt="" width="160" height="160">
+        </span>
+
+        <p class="kicker">Oulun DIY-festari esittää</p>
+
+        <span class="slot">
+          <img src="/assets/clipart/party-popper.svg" alt="" width="160" height="124">
+        </span>
+      </div>
+
+      <!-- ============ NIMI ============ -->
+      <h1 class="poster__title">
+        <span class="poster__title-a">Eipä</span>
+        <span class="poster__title-b">Vissiin!</span>
+      </h1>
+
+      <p class="poster__year">2026</p>
+
+      <div class="poster__rule"></div>
+
+      <!-- ============ MILLOIN / MISSÄ ============ -->
+      <p class="poster__when">LA 12.9.2026</p>
+      <p class="poster__where">TUKIKOHTA · OULU</p>
+      <p class="poster__doors">OVET 17:30 &nbsp;·&nbsp; K-18</p>
+
+      <div class="poster__rule"></div>
+
+      <!-- ============ LINE-UP ============ -->
+      <ul class="poster__lineup">
+        <li class="is-head">Trischloss</li>
+        <li>Jännite</li>
+        <li class="is-long">Tornion syntymättömät ministerit</li>
+        <li>Mielikarkki</li>
+        <li>Pahennustakki</li>
+        <li>Piehingin perkele</li>
+      </ul>
+
+      <!-- ============ CLIPART-RIVI ============ -->
+      <div class="poster__clipart-row">
+        <span class="slot">
+          <img src="/assets/clipart/boombox.svg" alt="" width="200" height="206">
+        </span>
+        <span class="slot">
+          <img src="/assets/clipart/break-dancer.svg" alt="" width="200" height="131">
+        </span>
+        <span class="slot">
+          <img src="/assets/clipart/discoball.svg" alt="" width="165" height="200">
+        </span>
+      </div>
+
+      <!-- ============ HINTA ============ -->
+      <p class="poster__price">12&nbsp;€ OVELTA &nbsp;·&nbsp; KÄTEINEN TAI MOBILEPAY</p>
+
+      <div class="poster__rule"></div>
+
+      <!-- ============ ALAREUNA ============ -->
+      <div class="poster__footer">
+        <!-- QR ja teksti vierekkäin, ei allekkain: julisteen pystytila on
+             kiinteä 420 mm eikä 28 mm:n koodille ole tilaa omalla rivillään. -->
+        <div class="poster__footer-row">
+          <div class="poster__qr-block">
+            <img class="poster__qr" src="/assets/qr-instagram.svg"
+                 alt="QR-koodi Instagram-tilille @eipavissiinfestival"
+                 width="120" height="120">
+            <span class="poster__qr-label">INSTAGRAM</span>
+          </div>
+          <div class="poster__footer-text">
+            <p class="poster__url">EIPAVISSIIN.FI</p>
+            <p class="poster__smallprint">
+              Sorvarintie 5, 90520 Oulu &nbsp;·&nbsp; eipavissiinfestival@proton.me
+              &nbsp;·&nbsp; Instagram @eipavissiinfestival<br>
+              Omat eväät mukaan — paikan päällä ei ole myyntiä. Turvallisemman tilan
+              periaatteet ja saavutettavuustiedot verkkosivuilla.
+            </p>
+          </div>
+        </div>
+
+        <!-- TODO: lisää tukijoiden 88×31-napit ja poista kommenttimerkit.
+        <div class="poster__sponsors">
+          <span class="slot" data-slot="buttons/tuki-1.gif · 88×31">
+            <img src="/assets/buttons/tuki-1.gif" alt="" width="88" height="31">
+          </span>
+          <span class="slot" data-slot="buttons/tuki-2.gif · 88×31">
+            <img src="/assets/buttons/tuki-2.gif" alt="" width="88" height="31">
+          </span>
+          <span class="slot" data-slot="buttons/tuki-3.gif · 88×31">
+            <img src="/assets/buttons/tuki-3.gif" alt="" width="88" height="31">
+          </span>
+        </div>
+        -->
+      </div>
+
+    </div>
+
+    <!--
+      Leikkuumerkit. Osoittavat leikkauslinjaa (297×420 mm) ja sijaitsevat
+      uloimmassa 5 mm:n kehässä, leikkuuvaran ulkopuolella. Sijainnit ovat
+      css/poster-bleed.css:ssä.
+    -->
+    <span class="mark mark--h mark--tl-h" aria-hidden="true"></span>
+    <span class="mark mark--v mark--tl-v" aria-hidden="true"></span>
+    <span class="mark mark--h mark--tr-h" aria-hidden="true"></span>
+    <span class="mark mark--v mark--tr-v" aria-hidden="true"></span>
+    <span class="mark mark--h mark--bl-h" aria-hidden="true"></span>
+    <span class="mark mark--v mark--bl-v" aria-hidden="true"></span>
+    <span class="mark mark--h mark--br-h" aria-hidden="true"></span>
+    <span class="mark mark--v mark--br-v" aria-hidden="true"></span>
+  </div>
+</div>
+
+</body>
+</html>

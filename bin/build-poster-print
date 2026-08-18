@@ -1,0 +1,111 @@
+#!/usr/bin/env python3
+"""Generoi poster-print.html tiedostosta poster.html.
+
+poster-print.html on painovalmis versio: sama sisältö, mutta 5 mm:n
+leikkuuvara ja leikkuumerkit. Se on GENEROITU — älä muokkaa käsin.
+Kun muutat julisteen sisältöä, muuta poster.html ja aja tämä:
+
+    python3 bin/build-poster-print
+
+Näin sisältö ei pääse eriytymään kahteen tiedostoon. Sitä on tässä
+projektissa jo jouduttu korjaamaan kertaalleen sivuston ja julisteen
+välillä.
+"""
+import io
+import os
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = os.path.join(ROOT, 'poster.html')
+DST = os.path.join(ROOT, 'poster-print.html')
+
+TOOLBAR = '''<div class="toolbar">
+  <p class="toolbar__text">
+    <strong>Painovalmis versio.</strong> Arkki 317×440&nbsp;mm, leikkuukoko
+    A3 (297×420&nbsp;mm), leikkuuvara 5&nbsp;mm, leikkuumerkit mukana.
+    Tallenna PDF:ksi <strong>omalla paperikoolla 317 × 440&nbsp;mm</strong>,
+    marginaalit <em>ei mitään</em>, taustagrafiikat <em>päälle</em>.
+    Ohjeet: ks. README, kohta “Painovalmis PDF”.
+  </p>
+  <button class="toolbar__btn" type="button" onclick="window.print()">Tulosta / PDF</button>
+  <a class="toolbar__btn" href="/poster.html">← Tavallinen A3</a>
+</div>'''
+
+MARKS = '''
+    <!--
+      Leikkuumerkit. Osoittavat leikkauslinjaa (297×420 mm) ja sijaitsevat
+      uloimmassa 5 mm:n kehässä, leikkuuvaran ulkopuolella. Sijainnit ovat
+      css/poster-bleed.css:ssä.
+    -->
+    <span class="mark mark--h mark--tl-h" aria-hidden="true"></span>
+    <span class="mark mark--v mark--tl-v" aria-hidden="true"></span>
+    <span class="mark mark--h mark--tr-h" aria-hidden="true"></span>
+    <span class="mark mark--v mark--tr-v" aria-hidden="true"></span>
+    <span class="mark mark--h mark--bl-h" aria-hidden="true"></span>
+    <span class="mark mark--v mark--bl-v" aria-hidden="true"></span>
+    <span class="mark mark--h mark--br-h" aria-hidden="true"></span>
+    <span class="mark mark--v mark--br-v" aria-hidden="true"></span>
+  </div>'''
+
+BANNER = ('<!-- GENEROITU TIEDOSTO — älä muokkaa käsin.\n'
+          '     Lähde: poster.html.  Generointi: python3 bin/build-poster-print -->\n')
+
+
+def fail(msg):
+    sys.exit('build-poster-print: %s' % msg)
+
+
+def replace_once(text, old, new, what):
+    if text.count(old) != 1:
+        fail('odotettiin täsmälleen yhtä osumaa (%s), löytyi %d'
+             % (what, text.count(old)))
+    return text.replace(old, new)
+
+
+def main():
+    src = io.open(SRC, encoding='utf-8').read()
+
+    src = replace_once(
+        src,
+        '<title>Eipä Vissiin! 2026 — juliste (A3)</title>',
+        '<title>Eipä Vissiin! 2026 — juliste, painovalmis (A3 + leikkuuvara)</title>',
+        'title')
+
+    src = replace_once(
+        src,
+        '<link rel="stylesheet" href="/css/poster.css">',
+        '<link rel="stylesheet" href="/css/poster.css">\n'
+        '<link rel="stylesheet" href="/css/poster-bleed.css">',
+        'stylesheet')
+
+    start = src.index('<div class="toolbar">')
+    end = src.index('</div>', src.index('← Takaisin sivustolle')) + len('</div>')
+    src = src[:start] + TOOLBAR + src[end:]
+
+    # Juliste kääritään .sheet-elementtiin ja sisennetään.
+    open_tag = '<div class="stage">\n  <div class="poster">'
+    close_tag = '  </div>\n</div>\n'
+    if src.count(open_tag) != 1 or src.count(close_tag) != 1:
+        fail('poster.html:n rakenne ei ole odotettu (stage/poster)')
+
+    head, rest = src.split(open_tag, 1)
+    body, tail = rest.split(close_tag, 1)
+
+    indented = '\n'.join(('  ' + ln) if ln.strip() else ln
+                         for ln in body.split('\n'))
+
+    src = (head
+           + '<div class="stage">\n  <div class="sheet">\n    <div class="poster">'
+           + indented
+           + '    </div>\n' + MARKS + '\n</div>\n'
+           + tail)
+
+    src = replace_once(src, '<!DOCTYPE html>\n', '<!DOCTYPE html>\n' + BANNER,
+                       'doctype')
+
+    io.open(DST, 'w', encoding='utf-8').write(src)
+    print('poster-print.html generoitu (%d tavua)' % len(src.encode('utf-8')))
+
+
+if __name__ == '__main__':
+    main()

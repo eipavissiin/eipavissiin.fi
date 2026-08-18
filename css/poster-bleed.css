@@ -1,0 +1,109 @@
+@charset "utf-8";
+
+/* ============================================================
+   Eipä Vissiin! — poster-bleed.css
+   PAINOVALMIS versio julisteesta. Ladataan poster.css:n PÄÄLLE,
+   ei sen tilalle — tässä on vain ne säännöt jotka muuttuvat.
+
+   GEOMETRIA (mm, sivun vasemmasta yläkulmasta)
+
+     arkki (media)   317 × 440    ← tähän kokoon PDF tallennetaan
+     leikkuuvara     307 × 430    offset 5 mm  (bleed, väri ulottuu tänne)
+     leikkauskoko    297 × 420    offset 10 mm (trim, A3 — tähän leikataan)
+     turva-alue      273 × 392    offset 27/24 mm (kaikki sisältö tässä)
+
+   Uloin 5 mm:n kehä on pelkkää valkoista ja siinä ovat leikkuumerkit.
+   Merkit alkavat leikkuuvaran reunasta ja osoittavat leikkauslinjaa
+   — vakiokäytäntö, jossa merkin siirtymä = leikkuuvaran leveys.
+
+   SISÄLTÖALUE EI MUUTU. poster.css:ssä 297 − 2×12 = 273 mm leveä ja
+   420 − 2×14 = 392 mm korkea. Täällä 307 − 2×17 = 273 ja
+   430 − 2×19 = 392. Julisteen pystybudjetti (385,2 / 392 mm) pätee
+   siis sellaisenaan — leikkuuvara kasvattaa vain reunan väriä.
+   ============================================================ */
+
+@page {
+  size: 317mm 440mm;
+  margin: 0;
+}
+
+/* Arkki: valkoinen pohja, jonka päällä juliste ja leikkuumerkit ovat. */
+.sheet {
+  position: relative;
+  width: 317mm;
+  height: 440mm;
+  flex: 0 0 auto;
+  background: #fff;
+
+  transform: scale(var(--preview));
+  transform-origin: top center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Juliste kasvaa leikkuuvaran verran joka suuntaan ja asettuu arkille
+   5 mm:n päähän reunasta. Padding kasvaa saman verran, jotta sisältö
+   pysyy täsmälleen samassa kohdassa suhteessa leikkauslinjaan. */
+.sheet .poster {
+  position: absolute;
+  top: 5mm;
+  left: 5mm;
+  width: 307mm;
+  height: 430mm;
+  padding: 19mm 17mm;
+
+  /* Skaalaus ja varjo kuuluvat nyt arkille, eivät julisteelle. */
+  transform: none;
+  box-shadow: none;
+}
+
+.stage { height: calc(440mm * var(--preview) + 4rem); }
+
+/* ------------------------------------------------------------
+   Leikkuumerkit
+
+   Kahdeksan hiusviivaa, kaksi joka kulmassa. Vaakamerkit ovat
+   leikkauslinjan ylä- ja alareunan tasalla (y = 10 mm ja 430 mm),
+   pystymerkit vasemman ja oikean tasalla (x = 10 mm ja 307 mm).
+   Pituus 5 mm eli täsmälleen uloin kehä, joten merkki ei koskaan
+   ulotu leikkuuvaran päälle.
+
+   Viivan paksuus 0,25 mm asettuu leikkauslinjan ulkoreunaan eikä
+   sen keskelle. Ero on neljännesmillin kymmenesosia painossa —
+   merkitsevää vain jos merkkejä käytettäisiin mittaamiseen, mitä
+   ne eivät ole.
+   ------------------------------------------------------------ */
+
+.mark {
+  position: absolute;
+  background: #000;
+}
+
+.mark--h { width: 5mm;    height: 0.25mm; }
+.mark--v { width: 0.25mm; height: 5mm;    }
+
+.mark--tl-h { top:    10mm; left:  0; }
+.mark--tl-v { left:   10mm; top:   0; }
+.mark--tr-h { top:    10mm; right: 0; }
+.mark--tr-v { right:  10mm; top:   0; }
+.mark--bl-h { bottom: 10mm; left:  0; }
+.mark--bl-v { left:   10mm; bottom: 0; }
+.mark--br-h { bottom: 10mm; right: 0; }
+.mark--br-v { right:  10mm; bottom: 0; }
+
+/* ------------------------------------------------------------
+   Tuloste
+   ------------------------------------------------------------ */
+
+@media print {
+  .sheet {
+    transform: none;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  /* poster.css palauttaa printissä koon 297×420. Kumotaan. */
+  .sheet .poster {
+    width: 307mm;
+    height: 430mm;
+  }
+}

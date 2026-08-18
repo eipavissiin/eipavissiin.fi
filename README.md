@@ -12,10 +12,14 @@ Ei build-vaihetta, ei riippuvuuksia, ei frameworkkia. Pelkkää HTML:ää ja CSS
 eipa-vissiin/
 ├── index.html          yksisivuinen sivusto
 ├── poster.html         A3-juliste (297 × 420 mm), tulostettava
+├── poster-print.html   painovalmis juliste, leikkuuvaralla — GENEROITU
 ├── sticker.html        pyöreä tarra, leikkauskoko 60 mm
+├── bin/
+│   └── build-poster-print   generoi poster-print.html:n poster.html:stä
 ├── css/
 │   ├── site.css        sivuston tyylit (paletti muuttujissa ylhäällä)
 │   ├── poster.css      julisteen tyylit, mitat mm:einä
+│   ├── poster-bleed.css painovalmiin version lisäykset (leikkuuvara+merkit)
 │   └── sticker.css     tarran tyylit, mitat mm:einä
 ├── assets/
 │   ├── README.md       ← KUVAMANIFESTI + clipart-lähteet
@@ -120,6 +124,118 @@ Tulostusdialogissa:
 
 Työkalupalkki ja ruudun skaalaus eivät tulostu.
 
+## Painovalmis PDF (juliste painotaloon)
+
+`poster.html` on tarkoitettu omalle tulostimelle. **Painotaloon menee
+`poster-print.html`.** Ero on leikkuuvara ja leikkuumerkit — muuten sisältö on
+identtinen, koska tiedosto generoidaan `poster.html`:stä.
+
+### Miksi pelkkä 297 × 420 mm ei kelpaa
+
+Painokone ei leikkaa millilleen. Arkki liikkuu, terä heittää puolisen milliä
+suuntaansa. Jos värialue loppuu täsmälleen leikkauslinjaan, jokainen heitto
+ulospäin jättää reunaan valkoisen viivan. Siksi väriä pitää olla **leikkauskoon
+yli**: leikkuri osuu aina väriin, ja ylimääräinen menee roskiin.
+
+Tämä on se mitä paino tarkoitti. Kun tulostit koneeltasi 297 × 420 mm, arkki oli
+täsmälleen leikkauskoon kokoinen eikä varaa jäänyt.
+
+### Mitat
+
+| | | |
+|---|---|---|
+| **317 × 440 mm** | arkki | tähän kokoon PDF tallennetaan |
+| **307 × 430 mm** | leikkuuvara (bleed) | navy ulottuu tänne asti, 5 mm yli |
+| **297 × 420 mm** | leikkauskoko (trim) | A3, tähän leikataan |
+| **273 × 392 mm** | turva-alue | kaikki sisältö tässä, 12–14 mm reunasta |
+
+Uloin 5 mm:n kehä on valkoinen ja siinä ovat leikkuumerkit. Merkit osoittavat
+leikkauslinjaa ja alkavat vasta leikkuuvaran ulkopuolelta, niin kuin kuuluukin.
+
+Sisältöalue on **täsmälleen sama** kuin tavallisessa versiossa (273 × 392 mm),
+joten julisteen pystybudjetti pätee sellaisenaan eikä mikään siirry. Leikkuuvara
+kasvattaa vain reunan väriä.
+
+### PDF:n tallentaminen macOSilla
+
+Selain ei osaa itse valita 317 × 440 mm -paperia, joten se pitää luoda:
+
+1. Avaa `poster-print.html`.
+2. **Cmd + P** → Paperikoko → **Hallinnoi mukautettuja kokoja…**
+3. Uusi koko: leveys **317 mm**, korkeus **440 mm**, kaikki marginaalit **0**.
+   Nimeä esim. `A3 + leikkuuvara`.
+4. Marginaalit *ei mitään*, taustagrafiikat *päälle*, skaalaus **100 %**
+   (ei "sovita sivulle" — se pilaisi mitat).
+5. Tallenna PDF:nä.
+
+Tarkista lopuksi PDF:n koko (Esikatselu → Työkalut → Näytä kuvaus). Jos siinä
+lukee 317 × 440 mm, mitat menivät oikein. Jos jotain muuta, skaalaus oli päällä.
+
+Varmempi tapa, jos Homebrew on koneella — headless Chrome noudattaa `@page`-kokoa
+suoraan eikä tulostusdialogi pääse väliin:
+
+```sh
+python3 -m http.server 8000        # repon juuressa
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless --disable-gpu --no-pdf-header-footer \
+  --print-to-pdf=juliste-painoon.pdf \
+  http://localhost:8000/poster-print.html
+```
+
+### Painon lista, kohta kerrallaan
+
+| Painon vaatimus | Tilanne |
+|---|---|
+| 1. PDF | ✅ selaimen "Tallenna PDF:nä" |
+| 2. 300 dpi | ✅ ei koske tätä — juliste on kokonaan vektoria (teksti, SVG-clipart, QR). Vektori ei sumene missään koossa. |
+| 3. CMYK, Fogra 39 | ❌ **selain tuottaa aina RGB:tä.** Ks. alla. |
+| 4. Leikkuuvara 3–5 mm | ✅ 5 mm, `poster-print.html` |
+| 5. Turva-alue 5–10 mm | ✅ 12–14 mm |
+| 6. Fontit upotettu | ✅ Chrome upottaa fontit PDF:ään. Tarkista silti että Impact on koneella (ks. yllä) — muuten upotettu fontti on väärä fontti. |
+| 7. Korkearesoluutioiset kuvat | ✅ kaikki kuvat ovat SVG:tä |
+
+### CMYK — ainoa kohta jota ei voi hoitaa selaimessa
+
+Selaimen PDF-vienti on aina RGB. Vaihtoehdot, huonoimmasta parhaimpaan:
+
+1. **Anna painon kääntää.** Heidän RIPinsä tekee sen joka tapauksessa. Kysy
+   vedos (proof) ennen koko painosta. Ilmainen ja käytännössä riittävä.
+2. **Käännä itse Ghostscriptillä.** Ilmainen, ja Fogra 39 -profiilin
+   (`ISOcoated_v2_300_eci.icc`) saa maksutta [ECI:ltä](http://www.eci.org/doku.php?id=en:downloads):
+
+   ```sh
+   brew install ghostscript
+   gs -dBATCH -dNOPAUSE -dSAFER -sDEVICE=pdfwrite \
+      -dPDFSETTINGS=/prepress -dEmbedAllFonts=true \
+      -sColorConversionStrategy=CMYK -dProcessColorModel=/DeviceCMYK \
+      -sOutputICCProfile=ISOcoated_v2_300_eci.icc \
+      -o juliste-cmyk.pdf juliste-painoon.pdf
+   ```
+
+> ### ⚠️ Varaudu siihen että värit haalistuvat
+>
+> Paletti on rakennettu puhtaista RGB-neoneista: `#00ffff`, `#00ff00`,
+> `#ffff00`, `#ff00cc`. **Yksikään niistä ei mahdu CMYK-avaruuteen.** Ne ovat
+> ruudun valoa, eivät painoväriä. Käännöksessä ne siirtyvät lähimpään
+> painettavaan sävyyn: syaani tummuu taivaansiniseksi, limenvihreä
+> ruohonvihreäksi, pinkki menettää hehkun.
+>
+> Juliste ei siitä hajoa — 90-luvun ilme kestää tämän hyvin — mutta se ei näytä
+> ruudulta. **Älä arvioi lopputulosta näytöltä, pyydä painolta vedos.**
+> Jos värit menevät liian kauas, paletti kannattaa säätää valmiiksi
+> CMYK-turvallisiin arvoihin (`:root`-lohko, `css/poster.css`) sen sijaan että
+> antaa muunnoksen päättää.
+
+### poster-print.html on generoitu
+
+Älä muokkaa sitä käsin. Muuta `poster.html`, ja aja:
+
+```sh
+python3 bin/build-poster-print
+```
+
+Näin sisältö ei pääse eriytymään kahteen tiedostoon.
+
 ## Tarran tulostaminen
 
 Avaa `sticker.html`, paina **Tulosta / PDF**. Samat asetukset kuin
@@ -145,19 +261,6 @@ leikkautuu. Jos tarrapaino kysyy leikkuuvaraa, vastaus on 3 mm joka reunalla.
 leveimmät rivit ovat keskellä ja lyhyimmät ylhäällä ja alhaalla. Jos
 muutat tekstejä tai kokoja, tarkista että rivi mahtuu **sillä korkeudella**
 eikä vain keskellä.
-
-### Painovalmis versio
-
-Jos viet julisteen painoon ja he pyytävät leikkuuvaraa (bleed), muuta
-`css/poster.css`:
-
-```css
-@page { size: 303mm 426mm; margin: 0; }   /* A3 + 3 mm joka reunalle */
-.poster { width: 303mm; height: 426mm; padding: 17mm 15mm; }
-```
-
-Kopiokoneelle menevään versioon tätä ei tarvita. Valkoinen reuna A3:lla on
-täysin ajanmukainen.
 
 ## Julkaisu
 
