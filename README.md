@@ -58,9 +58,13 @@ Kuvapaikat erikseen:
 grep -rn 'data-slot' index.html poster.html
 ```
 
-Valmiina: päivämäärä, paikka, osoite, kellonajat, ikäraja, line-up, hinta,
-maksutavat, UKK, sähköposti ja Instagram. Sivusto ja juliste on synkattu
-keskenään.
+Valmiina: päivämäärä, paikka, osoite, kellonajat, ikäraja, line-up,
+aikataulu, hinta, maksutavat, UKK, sähköposti ja Instagram. Sivusto ja
+juliste on synkattu keskenään.
+
+> **Aikataulu on vain sivustolla.** Julisteessa sitä ei ole eikä sinne
+> mahdu: pystybudjetista on jäljellä 6,8 mm 392:sta, ja kuusi riviä veisi
+> nelinkertaisesti sen. Juliste kertoo bändit, sivusto kellonajat.
 
 Jäljellä:
 
@@ -68,17 +72,8 @@ Jäljellä:
    Kaksi TODO-riviä (esteetön sisäänkäynti, esteetön wc). Tarkista Tukikohdasta.
    Tämä on käytännössä ainoa kohta jota joku lukee tarkkaan ennen kuin päättää
    tuleeko, joten älä jätä sitä arvailun varaan.
-2. **Aikataulu** — koko osio on **piilotettu** (`hidden`-attribuutti
-   `<section id="aikataulu">`-tagissa ja sitä seuraavassa `<hr>`:ssä), koska
-   yksi bändi puuttuu eikä alustavaa aikataulua ole. Navin Aikataulu-linkki on
-   kommentoitu pois. Palautusohjeet ovat `index.html`:ssä osion yläpuolella.
-
-   > Osiota ei ole kommentoitu pois, koska sen sisällä on jo kommentti.
-   > HTML-kommentit eivät mene sisäkkäin — ulompi päättyisi ensimmäiseen
-   > `-->`:iin ja merkkaus hajoaisi. `hidden` on tässä oikea työkalu: se
-   > piilottaa osion myös ruudunlukijalta.
-3. **FB-eventti** — `index.html`, Yhteystiedot.
-4. **Tukijoiden 88×31-napit** — kommentoitu pois molemmista tiedostoista.
+2. **FB-eventti** — `index.html`, Yhteystiedot.
+3. **Tukijoiden 88×31-napit** — kommentoitu pois molemmista tiedostoista.
    Ainoat vielä tyhjät kuvapaikat.
 
 Clipart on paikallaan: kaikki muut kuvapaikat on täytetty CC0-lisensoiduilla

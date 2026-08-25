@@ -79,9 +79,7 @@
        ============================================================ -->
   <nav class="nav95" aria-label="Sivunavigaatio">
     <a class="btn95" href="#esiintyjat">Esiintyjät</a>
-    <!-- PIILOTETTU: palauta yhdessä #aikataulu-osion kanssa, ks. alempaa.
     <a class="btn95" href="#aikataulu">Aikataulu</a>
-    -->
     <a class="btn95" href="#liput">Liput</a>
     <a class="btn95" href="#perille">Perille</a>
     <a class="btn95" href="#ukk">UKK</a>
@@ -135,6 +133,7 @@
       <ul class="tick">
         <li><strong>Date:</strong> Saturday 12 September 2026</li>
         <li><strong>Doors:</strong> 17:30, first act 18:00, curfew 01:00</li>
+        <li><strong>Two stages</strong>, alternating on the hour — nothing clashes, you can catch all six bands.</li>
         <li><strong>Venue:</strong> Tukikohta, Sorvarintie 5, 90520 Oulu</li>
         <li><strong>Age limit:</strong> 18</li>
         <li><strong>Tickets:</strong> €12 at the door, cash or MobilePay. No advance sales.</li>
@@ -207,54 +206,44 @@
     <hr class="rainbow">
 
     <!-- ============================================================
-         AIKATAULU — PIILOTETTU TOISTAISEKSI
+         AIKATAULU
 
-         Line-up on kasassa, mutta kellonaikoja ei ole vahvistettu, joten
-         koko osio on yhä piilossa. Taulukossa olevat ajat ovat arvauksia
-         kuudelle bändille — tarkista ne ennen kuin poistat piilotuksen.
-         Palauta näin:
-           1. poista alta "hidden"-attribuutti tämän <section>-tagin sisältä
-           2. poista "hidden" alempaa <hr class="rainbow" hidden> -riviltä
-           3. palauta navin Aikataulu-linkki (kommentoitu pois ylempänä)
-           4. täytä taulukon kellonajat ja poista sen ympäriltä
-              kommenttimerkit sekä alempi .note-kappale
-
-         Osiota EI ole kommentoitu pois, koska sisällä on jo kommentti
-         eivätkä HTML-kommentit mene sisäkkäin — ulompi loppuisi
-         ensimmäiseen "-->" ja merkkaus hajoaisi.
+         Kaksi lavaa, jotka vuorottelevat tasatunnein: pariton tunti
+         pienellä, parillinen isolla. Vaihtoehtoja ei siis ole — kaikki
+         kuusi keikkaa ehtii katsoa.
          ============================================================ -->
-    <section class="panel" aria-labelledby="h-aikataulu" id="aikataulu" hidden>
+    <section class="panel" aria-labelledby="h-aikataulu" id="aikataulu">
       <h2 id="h-aikataulu" class="panel__title">
         Aikataulu <span class="gloss" lang="en">/ Schedule</span>
       </h2>
 
-      <!-- TODO: täytä oikeat kellonajat ja poista tämän lohkon ympäriltä
-           kommenttimerkit (rivi yllä ja "-->" alla). Poista samalla
-           alempi .note-kappale.
       <div class="table-scroll">
         <table class="grid95">
-          <caption>Lauantai 12.9.2026 — kaikki ajat alustavia</caption>
+          <caption>Lauantai 12.9.2026 — ovet auki 17:30</caption>
           <thead>
             <tr>
               <th scope="col">Klo</th>
+              <th scope="col">Lava</th>
               <th scope="col">Esiintyjä</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>18:00</td><td>Piehingin perkele</td></tr>
-            <tr><td>18:50</td><td>Pahennustakki</td></tr>
-            <tr><td>19:40</td><td>Mielikarkki</td></tr>
-            <tr><td>20:30</td><td>Tornion syntymättömät ministerit</td></tr>
-            <tr><td>21:30</td><td>Jännite</td></tr>
-            <tr><td>22:30</td><td>Trischloss</td></tr>
+            <tr><td>18:00</td><td>Pieni</td><td>Mielikarkki</td></tr>
+            <tr><td>19:00</td><td>Iso</td><td>Pahennustakki</td></tr>
+            <tr><td>20:00</td><td>Pieni</td><td>Piehingin perkele</td></tr>
+            <tr><td>21:00</td><td>Iso</td><td>Tornion syntymättömät ministerit</td></tr>
+            <tr><td>22:00</td><td>Pieni</td><td>Jännite</td></tr>
+            <tr><td>23:00</td><td>Iso</td><td>Trischloss</td></tr>
           </tbody>
         </table>
       </div>
-      -->
 
-      <p class="note">Aikataulu julkaistaan lähempänä tapahtumaa. Ovet auki 17:30, ensimmäinen keikka 18:00.</p>
+      <p class="note">
+        Lavat vuorottelevat, joten päällekkäisyyksiä ei ole — kaikki kuusi
+        keikkaa ehtii katsoa. Ovet auki 17:30, yö loppuu 01:00.
+      </p>
     </section>
-    <hr class="rainbow" hidden>
+    <hr class="rainbow">
 
     <!-- ============================================================
          LIPUT
