@@ -273,9 +273,15 @@ bändeille ja miksaajalle, ei yleisölle. Osoite jaetaan suoraan.
 > kopioitu sivulle, koska osoite on julkinen ja repo on julkinen. Linkki
 > riittää. Älä lisää niitä myöhemminkään.
 
-Kanavamäärät eivät sisällä rumpuja — se luku puuttuu vielä molemmilta
-lavoilta. Ilman rumpuja suurin tarve on 8 kanavaa kummallakin lavalla
-(Pahennustakki ja Jännite).
+Kanavamäärät eivät sisällä rumpuja, eikä niiden ole tarkoituskaan:
+rumpujen mikitys ja koko patchin järjestys ovat talon miksaajien päätös.
+Sivu kertoo vain paljonko rumpujen päälle tulee — ilman rumpuja suurin
+tarve on 8 kanavaa kummallakin lavalla (Pahennustakki ja Jännite).
+
+Samasta syystä Piehingin perkeleen lähteitä ei ole numeroitu, vaikka
+bändin oma PDF numeroi ne 1–5. Numerot olisivat ehdotus, eivät patch.
+Phantom-tieto sen sijaan on säilytetty, koska se on lähteen ominaisuus
+eikä riipu kanavajärjestyksestä.
 
 ## Julkaisu
 
