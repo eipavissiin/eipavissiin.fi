@@ -14,12 +14,14 @@ eipa-vissiin/
 ├── poster.html         A3-juliste (297 × 420 mm), tulostettava
 ├── poster-print.html   painovalmis juliste, leikkuuvaralla — GENEROITU
 ├── sticker.html        pyöreä tarra, leikkauskoko 60 mm
+├── rider.html          tekninen rider (noindex, ei linkkiä navista)
 ├── bin/
 │   └── build-poster-print   generoi poster-print.html:n poster.html:stä
 ├── css/
 │   ├── site.css        sivuston tyylit (paletti muuttujissa ylhäällä)
 │   ├── poster.css      julisteen tyylit, mitat mm:einä
 │   ├── poster-bleed.css painovalmiin version lisäykset (leikkuuvara+merkit)
+│   ├── rider.css       riderin tyylit + A4-tuloste
 │   └── sticker.css     tarran tyylit, mitat mm:einä
 ├── assets/
 │   ├── README.md       ← KUVAMANIFESTI + clipart-lähteet
@@ -256,6 +258,24 @@ leikkautuu. Jos tarrapaino kysyy leikkuuvaraa, vastaus on 3 mm joka reunalla.
 leveimmät rivit ovat keskellä ja lyhyimmät ylhäällä ja alhaalla. Jos
 muutat tekstejä tai kokoja, tarkista että rivi mahtuu **sillä korkeudella**
 eikä vain keskellä.
+
+## Tekninen rider
+
+`rider.html` — kanavalistat molemmille lavoille, bändien lavakartat ja
+tarkistuslista ennen ovien avaamista. Käyttää `site.css`:ää ja lisäksi
+`css/rider.css`:ää, jossa on myös **A4-tuloste** miksaajan pöydälle
+(linkkien osoitteet tulostuvat näkyviin, koska paperilla ei voi klikata).
+
+Sivu on `noindex` eikä siihen ole linkkiä sivuston navista: se on työkalu
+bändeille ja miksaajalle, ei yleisölle. Osoite jaetaan suoraan.
+
+> **Bändien PDF:issä on henkilöiden puhelinnumeroita.** Niitä ei ole
+> kopioitu sivulle, koska osoite on julkinen ja repo on julkinen. Linkki
+> riittää. Älä lisää niitä myöhemminkään.
+
+Kanavamäärät eivät sisällä rumpuja — se luku puuttuu vielä molemmilta
+lavoilta. Ilman rumpuja suurin tarve on 8 kanavaa kummallakin lavalla
+(Pahennustakki ja Jännite).
 
 ## Julkaisu
 

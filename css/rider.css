@@ -1,0 +1,125 @@
+@charset "utf-8";
+
+/* ============================================================
+   Eipä Vissiin! — rider.css
+   Tekninen rider. Käyttää site.css:n tyylejä; täällä on vain se
+   mikä on tälle sivulle erityistä.
+
+   Sivu on työkalu miksaajalle, ei markkinointia: tiiviit taulukot
+   ja tulostettava A4. Ilme on sama 90-luku, mutta kevennettynä.
+   ============================================================ */
+
+/* Lavat erottuvat värillä: iso pinkki, pieni syaani. */
+.stage--iso   { --stage: var(--hotpink); }
+.stage--pieni { --stage: #0088aa; }
+
+.stage__title {
+  border-left: 8px solid var(--stage);
+  padding-left: 0.6rem;
+}
+
+/* Kanavataulukko on leveä. Tiivistetään ja estetään kellonaikojen
+   ja lukumäärien rivittyminen. */
+.rider-table { font-size: 0.82rem; }
+.rider-table th,
+.rider-table td { padding: 0.35rem 0.5rem; vertical-align: top; }
+.rider-table td:nth-child(2) { font-weight: bold; }
+.rider-table th:nth-child(n+3),
+.rider-table td:nth-child(n+3) { text-align: center; }
+.rider-table td:nth-child(n+7) { text-align: left; }
+
+/* site.css ei tyylittele h3:a, koska muualla sivustolla ei ole
+   kolmostason otsikoita. Täällä on. */
+.panel h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--stage, var(--ink));
+  margin: 1.4rem 0 0.4rem;
+}
+
+/* Kanavamäärien yhteenveto. */
+.chan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chan li {
+  flex: 1 1 12rem;
+  border: 2px groove var(--chrome);
+  background: #fff;
+  padding: 0.6rem 0.8rem;
+}
+
+.chan b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--stage, var(--ink));
+}
+
+/* Varoituslaatikko. Näitä on kaksi ja molemmat ovat sellaisia joista
+   keikka kaatuu jos ne huomataan vasta lavalla. */
+.warn {
+  border: 3px ridge var(--hotpink);
+  background: #fff6fc;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+}
+
+.warn > :first-child { margin-top: 0; }
+.warn > :last-child  { margin-bottom: 0; }
+
+.warn__title {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--hotpink);
+  margin: 0 0 0.4rem;
+}
+
+/* Tarkistuslista. */
+.checklist { padding-left: 1.2rem; }
+.checklist li { margin-bottom: 0.5rem; }
+
+/* ------------------------------------------------------------
+   Tuloste — miksaaja haluaa tämän paperilla pöydälle.
+   ------------------------------------------------------------ */
+
+@media print {
+  @page { size: A4 portrait; margin: 12mm; }
+
+  .ticker,
+  .nav95,
+  .skip-link,
+  .footer__construction,
+  .counter { display: none; }
+
+  body { background: #fff; }
+
+  .page { max-width: none; margin: 0; padding: 0; }
+
+  .panel {
+    border: 1px solid #000;
+    box-shadow: none;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Taulukko ei saa katketa sivunvaihdossa. */
+  .table-scroll { overflow: visible; }
+  .rider-table { font-size: 9pt; }
+
+  /* Linkkien osoitteet näkyviin, koska paperilla ei voi klikata. */
+  .rider-link::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    word-break: break-all;
+  }
+}
