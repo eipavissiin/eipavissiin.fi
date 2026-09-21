@@ -19,6 +19,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'poster.html')
 DST = os.path.join(ROOT, 'poster-print.html')
 
+# Sivusto elää vuosihakemistossa (/2026/...), joten absoluuttiset polut
+# johdetaan hakemiston nimestä eikä kirjoiteta kiinni. Kun vuoden 2026
+# sivusto siirrettiin juuresta /2026/:een, tämä skripti oli ainoa paikka
+# joka jäi osoittamaan vanhaan polkuun — johdetaan se nyt itse.
+PREFIX = '/' + os.path.basename(ROOT)
+
 TOOLBAR = '''<div class="toolbar">
   <p class="toolbar__text">
     <strong>Painovalmis versio.</strong> Arkki 317×440&nbsp;mm, leikkuukoko
@@ -28,7 +34,7 @@ TOOLBAR = '''<div class="toolbar">
     Ohjeet: ks. README, kohta “Painovalmis PDF”.
   </p>
   <button class="toolbar__btn" type="button" onclick="window.print()">Tulosta / PDF</button>
-  <a class="toolbar__btn" href="/poster.html">← Tavallinen A3</a>
+  <a class="toolbar__btn" href="%(prefix)s/poster.html">← Tavallinen A3</a>
 </div>'''
 
 MARKS = '''
@@ -73,14 +79,14 @@ def main():
 
     src = replace_once(
         src,
-        '<link rel="stylesheet" href="/css/poster.css">',
-        '<link rel="stylesheet" href="/css/poster.css">\n'
-        '<link rel="stylesheet" href="/css/poster-bleed.css">',
+        '<link rel="stylesheet" href="%s/css/poster.css">' % PREFIX,
+        '<link rel="stylesheet" href="%s/css/poster.css">\n'
+        '<link rel="stylesheet" href="%s/css/poster-bleed.css">' % (PREFIX, PREFIX),
         'stylesheet')
 
     start = src.index('<div class="toolbar">')
     end = src.index('</div>', src.index('← Takaisin sivustolle')) + len('</div>')
-    src = src[:start] + TOOLBAR + src[end:]
+    src = src[:start] + (TOOLBAR % {'prefix': PREFIX}) + src[end:]
 
     # Juliste kääritään .sheet-elementtiin ja sisennetään.
     open_tag = '<div class="stage">\n  <div class="poster">'

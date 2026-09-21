@@ -4,397 +4,46 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Eipä Vissiin! 2026</title>
-<meta name="description" content="Eipä Vissiin! on yksipäiväinen DIY-festivaali Oulussa. 12.9.2026, Tukikohdassa, liput 12 euroa.">
+<title>Eipä Vissiin! 2027 — Save the date</title>
+<meta name="description" content="Eipä Vissiin! 2027 järjestetään lauantaina 11.9.2027 Tukikohdassa Oulussa.">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Eipä Vissiin! 2026">
-<meta property="og:description" content="Yksipäiväinen DIY-festari Oulussa. Tukikohdassa 12.9.2026.">
+<meta property="og:title" content="Eipä Vissiin! 2027 — Save the date">
+<meta property="og:description" content="Lauantaina 11.9.2027, Tukikohta, Oulu.">
 <meta property="og:locale" content="fi_FI">
-<!-- og:image on oltava absoluuttinen URL. Facebook, Slack ja LinkedIn
-     eivät luotettavasti ratkaise suhteellista polkua, jolloin jakokuva
-     jää pois ilman virheilmoitusta. -->
+<meta property="og:url" content="https://eipavissiin.fi/">
+<!-- Absoluuttinen URL: suhteellista polkua ei ratkaista luotettavasti. -->
 <meta property="og:image" content="https://eipavissiin.fi/assets/social/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:url" content="https://eipavissiin.fi/">
 
 <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="/assets/social/apple-touch-icon.png">
-<link rel="stylesheet" href="/css/site.css">
+
+<!-- Otsikkofontti on repossa. Esiladataan, koska se on sivun ainoa
+     kuva-arvoinen elementti eikä sen haluta saapuvan viimeisenä. -->
+<link rel="preload" href="/fonts/great-vibes-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/save-the-date.css">
 </head>
 
 <body>
 
-<a class="skip-link" href="#sisalto">Siirry sisältöön</a>
+<main class="card">
+  <p class="card__host">Eipä Vissiin!</p>
 
-<!-- ============================================================
-     KELLUVA TICKER — 90-luvun <marquee> mutta CSS:llä ja
-     prefers-reduced-motion huomioiden.
-     ============================================================ -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker__track">
-    <span>★ EIPÄ VISSIIN! 2026 ★ LIPUT MYYNNISSÄ ★ OULU ★ DIY SINCE 2025 ★ EI ETUKÄTEISVARAUKSIA OVELTA ★&nbsp;</span>
-    <span>★ EIPÄ VISSIIN! 2026 ★ LIPUT MYYNNISSÄ ★ OULU ★ DIY SINCE 2025 ★ EI ETUKÄTEISVARAUKSIA OVELTA ★&nbsp;</span>
-  </div>
-</div>
+  <h1 class="card__save" lang="en">Save the date</h1>
 
-<div class="page">
+  <p class="rule" aria-hidden="true"><span class="rule__gem"></span></p>
 
-  <!-- ============================================================
-       HERO
-       ============================================================ -->
-  <header class="hero">
-    <p class="hero__welcome">~*~ Tervetuloa kotisivuillemme ~*~</p>
+  <p class="card__date"><time datetime="2027-09-11">11.9.2027</time></p>
 
-    <span class="slot slot--inline">
-      <img src="/assets/clipart/sunburst.svg" alt="" width="120" height="60">
-    </span>
+  <p class="card__place">Tukikohta · Oulu</p>
+</main>
 
-    <h1 class="wordart">Eipä&nbsp;Vissiin!</h1>
-
-    <p class="hero__year">2026</p>
-
-    <span class="slot slot--inline">
-      <img src="/assets/clipart/boombox.svg" alt="" width="96" height="99">
-    </span>
-
-    <p class="hero__tagline">Yksipäiväinen DIY-festari&nbsp;Oulussa</p>
-
-    <p class="hero__when">
-      <strong>LA 12.9.2026</strong><br>
-      <span class="hero__where">Tukikohta, Oulu</span>
-    </p>
-
-    <p class="hero__cta">
-      <a class="btn95 btn95--big" href="#liput">LIPUT&nbsp;»</a>
-    </p>
-  </header>
-
-  <hr class="rainbow">
-
-  <!-- ============================================================
-       NAVI — beveled 95-nappulat
-       ============================================================ -->
-  <nav class="nav95" aria-label="Sivunavigaatio">
-    <a class="btn95" href="#esiintyjat">Esiintyjät</a>
-    <a class="btn95" href="#aikataulu">Aikataulu</a>
-    <a class="btn95" href="#liput">Liput</a>
-    <a class="btn95" href="#perille">Perille</a>
-    <a class="btn95" href="#ukk">UKK</a>
-    <a class="btn95" href="#yhteystiedot">Yhteystiedot</a>
-    <a class="btn95" href="/poster.html">Juliste</a>
-  </nav>
-
-  <hr class="rainbow">
-
-  <main id="sisalto">
-
-    <!-- ============================================================
-         PIKATIEDOT
-         ============================================================ -->
-    <section class="panel" aria-labelledby="h-pikatiedot">
-      <h2 id="h-pikatiedot" class="panel__title">Pikatiedot</h2>
-
-      <dl class="factlist">
-        <dt>Milloin</dt>
-        <dd>Lauantaina 12.9.2026</dd>
-
-        <dt>Ovet auki</dt>
-        <dd>klo 17:30</dd>
-
-        <dt>Ensimmäinen keikka</dt>
-        <dd>klo 18:00</dd>
-
-        <dt>Loppuu</dt>
-        <dd>klo 01:00</dd>
-
-        <dt>Missä</dt>
-		<dd>Tukikohta, Sorvarintie 5, 90520 Oulu</dd>
-
-        <dt>Ikäraja</dt>
-        <dd>K-18</dd>
-
-        <dt>Liput</dt>
-        <dd>12&nbsp;€ ovelta</dd>
-      </dl>
-    </section>
-
-    <!-- ============================================================
-         IN ENGLISH — pieni englanninkielinen tietolaatikko
-         ============================================================ -->
-    <section class="panel panel--english" aria-labelledby="h-english" lang="en">
-      <h2 id="h-english" class="panel__title">In English</h2>
-      <p>
-        <strong>Eipä Vissiin!</strong> is a one-day DIY festival in Oulu, Finland.
-        Everything below in a nutshell:
-      </p>
-      <ul class="tick">
-        <li><strong>Date:</strong> Saturday 12 September 2026</li>
-        <li><strong>Doors:</strong> 17:30, first act 18:00, curfew 01:00</li>
-        <li><strong>Two stages</strong>, alternating on the hour — nothing clashes, you can catch all six bands.</li>
-        <li><strong>Venue:</strong> Tukikohta, Sorvarintie 5, 90520 Oulu</li>
-        <li><strong>Age limit:</strong> 18</li>
-        <li><strong>Tickets:</strong> €12 at the door, cash or MobilePay. No advance sales.</li>
-        <li><strong>Bring your own snacks</strong> — there is no food or drink for sale on site.</li>
-      </ul>
-      <p>
-        Questions in English are very welcome:
-        <a href="mailto:eipavissiinfestival@proton.me">eipavissiinfestival@proton.me</a>.
-      </p>
-    </section>
-
-    <hr class="rainbow">
-
-    <!-- ============================================================
-         ESIINTYJÄT
-         ============================================================ -->
-    <section class="panel" aria-labelledby="h-esiintyjat" id="esiintyjat">
-      <h2 id="h-esiintyjat" class="panel__title">
-        Esiintyjät <span class="gloss" lang="en">/ Line-up</span>
-      </h2>
-
-      <span class="slot slot--inline">
-        <img src="/assets/clipart/badge-best.svg" alt="" width="70" height="20">
-      </span>
-
-      <!-- Vilkkuvat merkit ovat koristeita: alt="" jättää ne ruudunlukijalta
-           väliin. Vaihtaminen = vaihda src ja width. Saatavilla:
-           badge-best 70, badge-love 70, badge-cool 70, badge-wow 64,
-           badge-hot 64, badge-rules 76, new-badge 44. -->
-      <ul class="lineup">
-        <li class="lineup__item lineup__item--headline">
-          <span class="lineup__name"><a class="lineup__link" href="https://www.instagram.com/trischloss" target="_blank" rel="noopener">Trischloss</a>
-            <img class="lineup__badge" src="/assets/clipart/badge-wow.svg" alt="" width="64" height="20">
-          </span>
-          <span class="lineup__meta">Oulu</span>
-        </li>
-        <li class="lineup__item">
-          <span class="lineup__name"><a class="lineup__link" href="https://linktr.ee/jannite" target="_blank" rel="noopener">Jännite</a>
-            <img class="lineup__badge" src="/assets/clipart/badge-cool.svg" alt="" width="70" height="20">
-          </span>
-          <span class="lineup__meta">Oulu</span>
-        </li>
-        <li class="lineup__item">
-          <span class="lineup__name"><a class="lineup__link" href="https://ministerit.fi" target="_blank" rel="noopener">Tornion syntymättömät ministerit</a>
-            <img class="lineup__badge" src="/assets/clipart/badge-rules.svg" alt="" width="76" height="20">
-          </span>
-          <span class="lineup__meta">Oulu</span>
-        </li>
-        <li class="lineup__item">
-          <span class="lineup__name"><a class="lineup__link" href="https://www.facebook.com/mielikarkki/" target="_blank" rel="noopener">Mielikarkki</a>
-            <img class="lineup__badge" src="/assets/clipart/badge-love.svg" alt="" width="70" height="20">
-          </span>
-          <span class="lineup__meta">Oulu</span>
-        </li>
-        <li class="lineup__item">
-          <span class="lineup__name"><a class="lineup__link" href="https://pahennustakki.fi" target="_blank" rel="noopener">Pahennustakki</a>
-            <img class="lineup__badge" src="/assets/clipart/badge-hot.svg" alt="" width="64" height="20">
-          </span>
-          <span class="lineup__meta">Oulu</span>
-        </li>
-        <li class="lineup__item">
-          <span class="lineup__name"><a class="lineup__link" href="https://linktr.ee/PiehinginPRKL" target="_blank" rel="noopener">Piehingin perkele</a>
-            <img class="lineup__badge" src="/assets/clipart/new-badge.svg" alt="" width="44" height="20">
-          </span>
-          <span class="lineup__meta">Piehinki</span>
-        </li>
-      </ul>
-    </section>
-
-    <hr class="rainbow">
-
-    <!-- ============================================================
-         AIKATAULU
-
-         Kaksi lavaa, jotka vuorottelevat tasatunnein: pariton tunti
-         pienellä, parillinen isolla. Vaihtoehtoja ei siis ole — kaikki
-         kuusi keikkaa ehtii katsoa.
-         ============================================================ -->
-    <section class="panel" aria-labelledby="h-aikataulu" id="aikataulu">
-      <h2 id="h-aikataulu" class="panel__title">
-        Aikataulu <span class="gloss" lang="en">/ Schedule</span>
-      </h2>
-
-      <div class="table-scroll">
-        <table class="grid95">
-          <caption>Lauantai 12.9.2026 — ovet auki 17:30</caption>
-          <thead>
-            <tr>
-              <th scope="col">Klo</th>
-              <th scope="col">Lava</th>
-              <th scope="col">Esiintyjä</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>18:00</td><td>Pieni</td><td>Mielikarkki</td></tr>
-            <tr><td>19:00</td><td>Iso</td><td>Pahennustakki</td></tr>
-            <tr><td>20:00</td><td>Pieni</td><td>Piehingin perkele</td></tr>
-            <tr><td>21:00</td><td>Iso</td><td>Tornion syntymättömät ministerit</td></tr>
-            <tr><td>22:00</td><td>Pieni</td><td>Jännite</td></tr>
-            <tr><td>23:00</td><td>Iso</td><td>Trischloss</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="note">
-        Lavat vuorottelevat, joten päällekkäisyyksiä ei ole — kaikki kuusi
-        keikkaa ehtii katsoa. Ovet auki 17:30, yö loppuu 01:00.
-      </p>
-    </section>
-    <hr class="rainbow">
-
-    <!-- ============================================================
-         LIPUT
-         ============================================================ -->
-    <section class="panel" aria-labelledby="h-liput" id="liput">
-      <h2 id="h-liput" class="panel__title">
-        Liput <span class="gloss" lang="en">/ Tickets</span>
-      </h2>
-
-      <div class="pricebox">
-        <p class="pricebox__price">12&nbsp;€ <span>ovelta</span></p>
-      </div>
-
-      <ul class="tick">
-        <li>Ovella käy käteinen ja MobilePay</li>
-      </ul>
-    </section>
-
-    <hr class="rainbow">
-
-    <!-- ============================================================
-         PERILLE JA SAAVUTETTAVUUS
-         ============================================================ -->
-    <section class="panel" aria-labelledby="h-perille" id="perille">
-      <h2 id="h-perille" class="panel__title">
-        Perille <span class="gloss" lang="en">/ Getting there</span>
-      </h2>
-
-      <p><strong>Osoite:</strong> Tukikohta, Sorvarintie 5, 90520 Oulu</p>
-
-      <ul class="tick">
-        <li><strong>Kävellen:</strong> lyhyt matka keskustasta.</li>
-        <li><strong>Pyörällä:</strong> pääsee</li>
-        <li><strong>Bussilla:</strong> Linjat 14 ja 19.</li>
-        <li><strong>Autolla:</strong> Tien varressa paikkoja.</li>
-      </ul>
-
-      <h3 class="panel__subtitle">Saavutettavuus <span class="gloss" lang="en">/ Accessibility</span></h3>
-      <ul class="tick">
-        <!-- TODO: tarkista nämä Tukikohdasta ja korjaa vastaamaan totuutta -->
-        <li>Esteetön sisäänkäynti: TODO</li>
-        <li>Esteetön wc: TODO</li>
-      </ul>
-      <p class="note">
-        Jos jokin näistä on sinulle ratkaiseva, laita viestiä etukäteen niin
-        selvitetään yhdessä miten homma järjestyy.
-      </p>
-
-      <h3 class="panel__subtitle">Turvallisempi tila <span class="gloss" lang="en">/ Safer space</span></h3>
-      <p>
-        Noudatamme Tukikohdan turvallisemman tilan periaatteita.
-      </p>
-    </section>
-
-    <hr class="rainbow">
-
-    <!-- ============================================================
-         UKK
-         ============================================================ -->
-    <section class="panel" aria-labelledby="h-ukk" id="ukk">
-      <h2 id="h-ukk" class="panel__title">
-        Usein kysytyt kysymykset <span class="gloss" lang="en">/ FAQ</span>
-      </h2>
-
-      <details class="faq">
-        <summary>Onko tapahtuma ulkona vai sisällä?</summary>
-        <p>Sisällä</p>
-      </details>
-      <details class="faq">
-        <summary>Saako omat eväät ottaa mukaan?</summary>
-        <p>Saa ja kannattaakin. Paikanpäälle ei ole tarjolla kuin hyvää seuraa ja mahtavaa musiikkia.</p>
-      </details>
-      <details class="faq">
-        <summary>Onko paikan päällä ruokaa?</summary>
-        <p>Ks. yllä. Omat eväät</p>
-      </details>
-      <details class="faq">
-        <summary>Onko narikka?</summary>
-        <p>Naulakkoja löytyy. Tavarat jättäjän vastuulla.</p>
-      </details>
-      <details class="faq">
-        <summary>Voiko tapahtumaan tulla vapaaehtoiseksi?</summary>
-        <p>Tokkiinsa. Ole yhteydessä.</p>
-      </details>
-    </section>
-
-    <hr class="rainbow">
-
-    <!-- ============================================================
-         YHTEYSTIEDOT
-         ============================================================ -->
-    <section class="panel" aria-labelledby="h-yhteystiedot" id="yhteystiedot">
-      <h2 id="h-yhteystiedot" class="panel__title">
-        Yhteystiedot <span class="gloss" lang="en">/ Contact</span>
-      </h2>
-
-      <p>
-        Sähköposti: <a href="mailto:eipavissiinfestival@proton.me">eipavissiinfestival@proton.me</a>
-      </p>
-      <p>
-        <!-- TODO: lisää FB-eventti tähän kun se on olemassa -->
-        <a href="https://instagram.com/eipavissiinfestival">Instagram @eipavissiinfestival</a>
-      </p>
-    </section>
-
-  </main>
-
-  <hr class="rainbow">
-
-  <!-- ============================================================
-       FOOTER — 88×31-napit, laskuri, under construction
-       ============================================================ -->
-  <footer class="footer">
-
-    <!-- TODO: vaihda omiin / kavereiden / yhteistyökumppanien 88×31-nappeihin
-         ja poista tämän lohkon ympäriltä kommenttimerkit.
-    <p class="footer__buttons">
-      <span class="slot slot--inline" data-slot="buttons/tuki-1.gif · 88×31">
-        <img src="/assets/buttons/tuki-1.gif" alt="Yhteistyökumppani 1" width="88" height="31">
-      </span>
-      <span class="slot slot--inline" data-slot="buttons/tuki-2.gif · 88×31">
-        <img src="/assets/buttons/tuki-2.gif" alt="Yhteistyökumppani 2" width="88" height="31">
-      </span>
-      <span class="slot slot--inline" data-slot="buttons/tuki-3.gif · 88×31">
-        <img src="/assets/buttons/tuki-3.gif" alt="Yhteistyökumppani 3" width="88" height="31">
-      </span>
-    </p>
-    -->
-
-    <p class="counter" role="img" aria-label="Koristeellinen kävijälaskuri">
-      Kävijöitä sitten vuoden 1997:
-      <span class="counter__digits"><b>0</b><b>0</b><b>1</b><b>3</b><b>3</b><b>7</b></span>
-    </p>
-
-    <p class="footer__construction">
-      <span class="slot slot--inline">
-        <img src="/assets/clipart/under-construction.svg" alt="" width="120" height="90">
-      </span>
-      <br>
-      Sivu on ikuisesti rakenteilla.
-    </p>
-
-    <p class="footer__meta">
-      Eipä Vissiin! · Oulu · <span lang="en">Best viewed with your eyes</span><br>
-      <a href="/poster.html">Juliste</a> ·
-      <a href="#sisalto">Takaisin ylös</a>
-    </p>
-
-  </footer>
-
-</div>
+<p class="archive">
+  <a href="/2026/">Vuoden 2026 festari →</a>
+</p>
 
 </body>
 </html>

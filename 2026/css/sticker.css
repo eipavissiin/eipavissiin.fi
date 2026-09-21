@@ -115,7 +115,7 @@ img { max-width: 100%; height: auto; border: 0; }
   overflow: hidden;
 
   background-color: var(--navy);
-  background-image: url("/assets/bg/stars-tile.svg");
+  background-image: url("/2026/assets/bg/stars-tile.svg");
   background-repeat: repeat;
   background-size: 18mm 18mm;
 

@@ -9,7 +9,7 @@ Kuvapaikka on `<span class="slot">`, jonka sisällä on `<img>`:
 
 ```html
 <span class="slot slot--inline">
-  <img src="/assets/clipart/boombox.svg" alt="" width="96" height="99">
+  <img src="/2026/assets/clipart/boombox.svg" alt="" width="96" height="99">
 </span>
 ```
 

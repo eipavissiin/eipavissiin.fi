@@ -2,6 +2,48 @@
   publish = "."
   # Ei build-komentoa — tämä on staattinen sivusto sellaisenaan.
 
+# ------------------------------------------------------------------
+# Vanhat osoitteet
+#
+# Vuoden 2026 sivusto siirrettiin /2026/-hakemistoon kun juuri vapautui
+# vuoden 2027 save-the-datelle. Julisteessa, tarroissa ja somessa on
+# jaettu vanhoja osoitteita, joten ne ohjataan uuteen paikkaan.
+#
+# HUOM: juurta (/) EI ohjata — se on nyt 2027:n sivu, ja niin kuuluukin.
+# Painetussa julisteessa lukee EIPAVISSIIN.FI, ja sen halutaan vievän
+# tulevaan tapahtumaan eikä menneeseen.
+#
+# /assets/* on ohjattu ilman force-lippua, joten Netlify tarjoaa ensin
+# oikeasti olemassa olevan tiedoston (2027:n og-kuva ja ikonit) ja
+# ohjaa vain ne joita ei löydy. /css/* ja /fonts/* eivät ole listalla
+# lainkaan, koska niissä on 2027:n omat tiedostot.
+# ------------------------------------------------------------------
+
+[[redirects]]
+  from = "/poster.html"
+  to = "/2026/poster.html"
+  status = 301
+
+[[redirects]]
+  from = "/poster-print.html"
+  to = "/2026/poster-print.html"
+  status = 301
+
+[[redirects]]
+  from = "/sticker.html"
+  to = "/2026/sticker.html"
+  status = 301
+
+[[redirects]]
+  from = "/rider.html"
+  to = "/2026/rider.html"
+  status = 301
+
+[[redirects]]
+  from = "/assets/*"
+  to = "/2026/assets/:splat"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -15,6 +57,22 @@
     Cache-Control = "public, max-age=3600"
 
 [[headers]]
+  for = "/2026/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/2026/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Fontti on versioitu tiedostonimellä eikä muutu — pitkä välimuisti.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -1,0 +1,183 @@
+@charset "utf-8";
+
+/* ============================================================
+   Eipä Vissiin! 2027 — save-the-date.css
+
+   Vuoden 2027 teema on häämessut, joten sivu on kutsukortti:
+   norsunluu, kullanruskea, paljon tyhjää ja kaunokirjoitusotsikko.
+   Ei mitään 2026:n 90-lukua — se ilme jää arkistoon /2026/.
+   ============================================================ */
+
+/* Great Vibes on repossa eikä CDN:ssä. Ks. fonts/README.md.
+   swap: teksti näkyy heti varafontilla eikä sivu vilku tyhjänä. */
+@font-face {
+  font-family: "Great Vibes";
+  src: url("/fonts/great-vibes-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ivory:  #fbf7f0;   /* paperi */
+  --ink:    #2b2622;   /* teksti */
+  --ink-soft: #6b6157;
+  --gold:   #b08d4f;
+  --blush:  #c98b94;
+
+  --font-script: "Great Vibes", cursive;
+  --font-serif:  "Cormorant Garamond", "Hoefler Text", Didot, Garamond,
+                 "Times New Roman", serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { height: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------
+   Kortti
+   ------------------------------------------------------------ */
+
+.card {
+  max-width: 34rem;
+  width: 100%;
+  padding: clamp(2rem, 6vw, 3.75rem) clamp(1.25rem, 5vw, 3rem);
+  border: 1px solid var(--gold);
+  outline: 1px solid var(--gold);
+  outline-offset: 5px;   /* klassinen kaksoisviivakehys */
+
+  animation: rise 0.9s ease-out both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(0.75rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ------------------------------------------------------------
+   Sisältö
+   ------------------------------------------------------------ */
+
+.card__host {
+  margin: 0;
+  font-size: clamp(0.7rem, 2.4vw, 0.82rem);
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;   /* letter-spacing lisää välin myös viimeisen
+                            merkin jälkeen; kompensoidaan keskityksessä */
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.card__save {
+  margin: clamp(1.25rem, 4vw, 2rem) 0 0;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(3.25rem, 15vw, 6.5rem);
+  line-height: 1.05;
+  color: var(--ink);
+
+  /* Great Vibes on hyvin kursiivinen: viimeisen kirjaimen häntä jää
+     muuten kiinni oikeaan reunaan. */
+  padding-right: 0.12em;
+}
+
+/* Koristejakaja: viiva — vinoneliö — viiva. */
+.rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin: clamp(1.25rem, 4vw, 1.9rem) auto;
+  max-width: 14rem;
+}
+
+.rule::before,
+.rule::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.rule__gem {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  background: var(--blush);
+  transform: rotate(45deg);
+}
+
+.card__date {
+  margin: 0;
+  font-size: clamp(1.9rem, 7vw, 2.9rem);
+  letter-spacing: 0.05em;
+  font-variant-numeric: lining-nums;
+}
+
+.card__place {
+  margin: clamp(0.9rem, 3vw, 1.25rem) 0 0;
+  font-size: clamp(0.72rem, 2.4vw, 0.85rem);
+  letter-spacing: 0.26em;
+  text-indent: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------
+   Arkistolinkki
+   ------------------------------------------------------------ */
+
+.archive {
+  margin: clamp(2rem, 6vw, 3rem) 0 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.archive a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 1px;
+}
+
+.archive a:visited { color: var(--ink); }
+
+.archive a:hover,
+.archive a:focus-visible {
+  color: var(--blush);
+  border-bottom-color: var(--blush);
+}
+
+:focus-visible { outline: 2px solid var(--blush); outline-offset: 3px; }
+
+/* ------------------------------------------------------------
+   Liikkeen vähentäminen
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none; }
+}
+
+/* ------------------------------------------------------------
+   Tuloste — kutsukortti on paperitavaraa, joten se myös tulostuu.
+   ------------------------------------------------------------ */
+
+@media print {
+  body { background: #fff; padding: 0; }
+  .card { animation: none; border-color: #000; outline-color: #000; }
+  .archive { display: none; }
+}
